@@ -31,21 +31,22 @@ namespace Be.Stateless.Argument.Validation
 		[SuppressMessage("ReSharper", "PossibleNullReferenceException")]
 		public void ValidateArgumentsAndTheirState()
 		{
-			Tuple<int, int> tuple = null;
+			Tuple<int, int, int> tuple = null;
 			Action act = () => Validation.Setup()
 				.IsNotNull(tuple, nameof(tuple))
 				.Validate()
-				.IsPositive(tuple.Item1, nameof(tuple.Item1))
-				.IsPositive(tuple.Item2, nameof(tuple.Item2))
+				.IsPositive(tuple.Item1, $"{nameof(tuple)}.{nameof(tuple.Item1)}")
+				.IsPositive(tuple.Item2, $"{nameof(tuple)}.{nameof(tuple.Item2)}")
+				.IsPositive(tuple.Item3, $"{nameof(tuple)}.{nameof(tuple.Item3)}")
 				.Validate();
 
 			act.Should().Throw<ArgumentNullException>()
 				.Where(e => e.ParamName == nameof(tuple));
 
-			tuple = new Tuple<int, int>(-1, -1);
+			tuple = new Tuple<int, int, int>(1, -1, -1);
 
 			act.Should().Throw<AggregateException>()
-				.Where(e => e.InnerExceptions.OfType<ArgumentOutOfRangeException>().Count() == 2);
+				.Where(e => e.InnerExceptions.OfType<InvalidOperationException>().Count() == 2);
 		}
 
 		[Fact]

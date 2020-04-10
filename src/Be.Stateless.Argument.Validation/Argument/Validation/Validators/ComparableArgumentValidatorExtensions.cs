@@ -22,52 +22,52 @@ namespace Be.Stateless.Argument.Validation
 {
 	public static class ComparableArgumentValidatorExtensions
 	{
-		public static IArgumentValidator IsEqualTo<T>(this IArgumentValidator validator, T comparand, T comparator, string parameterName)
-			where T : IComparable, IComparable<T>
+		public static TV IsEqualTo<TV, TA>(this TV validator, TA comparand, TA comparator, string parameterName) where TV : IArgumentValidator
+			where TA : IComparable, IComparable<TA>
 		{
 			return comparand.CompareTo(comparator) == 0
 				? validator
 				: validator.AddException(new ArgumentException($"'{parameterName}' must be equal to {comparator}, but was {comparand}.", parameterName));
 		}
 
-		public static IArgumentValidator IsNotEqualTo<T>(this IArgumentValidator validator, T comparand, T comparator, string parameterName)
-			where T : IComparable, IComparable<T>
-		{
-			return comparand.CompareTo(comparator) != 0
-				? validator
-				: validator.AddException(new ArgumentException($"'{parameterName}' cannot be equal to {comparator}.", parameterName));
-		}
-
-		public static IArgumentValidator IsGreaterThan<T>(this IArgumentValidator validator, T comparand, T comparator, string parameterName)
-			where T : IComparable, IComparable<T>
-		{
-			return comparand.CompareTo(comparator) > 0
-				? validator
-				: validator.AddException(new ArgumentException($"'{parameterName}' must be greater than {comparator}, but was {comparand}.", parameterName));
-		}
-
-		public static IArgumentValidator IsGreaterOrEqualThan<T>(this IArgumentValidator validator, T comparand, T comparator, string parameterName)
-			where T : IComparable, IComparable<T>
+		public static TV IsGreaterOrEqualThan<TV, TA>(this TV validator, TA comparand, TA comparator, string parameterName) where TV : IArgumentValidator
+			where TA : IComparable, IComparable<TA>
 		{
 			return comparand.CompareTo(comparator) >= 0
 				? validator
 				: validator.AddException(new ArgumentException($"'{parameterName}' must be greater or equal than {comparator}, but was {comparand}.", parameterName));
 		}
 
-		public static IArgumentValidator IsLessThan<T>(this IArgumentValidator validator, T comparand, T comparator, string parameterName)
-			where T : IComparable, IComparable<T>
+		public static TV IsGreaterThan<TV, TA>(this TV validator, TA comparand, TA comparator, string parameterName) where TV : IArgumentValidator
+			where TA : IComparable, IComparable<TA>
+		{
+			return comparand.CompareTo(comparator) > 0
+				? validator
+				: validator.AddException(new ArgumentException($"'{parameterName}' must be greater than {comparator}, but was {comparand}.", parameterName));
+		}
+
+		public static TV IsLessOrEqualThan<TV, TA>(this TV validator, TA comparand, TA comparator, string parameterName) where TV : IArgumentValidator
+			where TA : IComparable, IComparable<TA>
+		{
+			return comparand.CompareTo(comparator) <= 0
+				? validator
+				: validator.AddException(new ArgumentException($"'{parameterName}' must be less or equal than {comparator}, but was {comparand}.", parameterName));
+		}
+
+		public static TV IsLessThan<TV, TA>(this TV validator, TA comparand, TA comparator, string parameterName) where TV : IArgumentValidator
+			where TA : IComparable, IComparable<TA>
 		{
 			return comparand.CompareTo(comparator) < 0
 				? validator
 				: validator.AddException(new ArgumentException($"'{parameterName}' must be less than {comparator}, but was {comparand}.", parameterName));
 		}
 
-		public static IArgumentValidator IsLessOrEqualThan<T>(this IArgumentValidator validator, T comparand, T comparator, string parameterName)
-			where T : IComparable, IComparable<T>
+		public static TV IsNotEqualTo<TV, TA>(this TV validator, TA comparand, TA comparator, string parameterName) where TV : IArgumentValidator
+			where TA : IComparable, IComparable<TA>
 		{
-			return comparand.CompareTo(comparator) <= 0
+			return comparand.CompareTo(comparator) != 0
 				? validator
-				: validator.AddException(new ArgumentException($"'{parameterName}' must be less or equal than {comparator}, but was {comparand}.", parameterName));
+				: validator.AddException(new ArgumentException($"'{parameterName}' cannot be equal to {comparator}.", parameterName));
 		}
 	}
 }

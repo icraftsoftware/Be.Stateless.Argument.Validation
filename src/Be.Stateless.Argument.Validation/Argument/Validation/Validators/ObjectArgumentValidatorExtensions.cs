@@ -22,16 +22,16 @@ namespace Be.Stateless.Argument.Validation
 {
 	public static class ObjectArgumentValidatorExtensions
 	{
-		public static IArgumentValidator IsNotNull<T>(this IArgumentValidator validator, T parameter, string parameterName)
-			where T : class
+		public static TV IsNotNull<TV, TA>(this TV validator, TA parameter, string parameterName) where TV : IArgumentValidator
+			where TA : class
 		{
 			return parameter is null
 				? validator.AddException(new ArgumentNullException(parameterName, $"'{parameterName}' cannot be null."))
 				: validator;
 		}
 
-		public static IArgumentValidator IsNull<T>(this IArgumentValidator validator, T parameter, string parameterName)
-			where T : class
+		public static TV IsNull<TV, TA>(this TV validator, TA parameter, string parameterName) where TV : IArgumentValidator
+			where TA : class
 		{
 			return parameter is null
 				? validator

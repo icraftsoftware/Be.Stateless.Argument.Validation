@@ -22,14 +22,14 @@ namespace Be.Stateless.Argument.Validation
 {
 	public static class StringArgumentValidatorExtensions
 	{
-		public static IArgumentValidator IsNotNullOrEmpty(this IArgumentValidator validator, string parameter, string parameterName)
+		public static T IsNotNullOrEmpty<T>(this T validator, string parameter, string parameterName) where T : IArgumentValidator
 		{
 			return string.IsNullOrEmpty(parameter)
 				? validator.AddException(new ArgumentNullException(parameterName, $"'{parameterName}' cannot be null or empty."))
 				: validator;
 		}
 
-		public static IArgumentValidator IsNotNullOrWhiteSpace(this IArgumentValidator validator, string parameter, string parameterName)
+		public static T IsNotNullOrWhiteSpace<T>(this T validator, string parameter, string parameterName) where T : IArgumentValidator
 		{
 			return string.IsNullOrWhiteSpace(parameter)
 				? validator.AddException(new ArgumentNullException(parameterName, $"'{parameterName}' cannot be null, empty, or contain only white spaces."))

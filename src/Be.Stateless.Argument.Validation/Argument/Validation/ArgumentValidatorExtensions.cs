@@ -23,14 +23,23 @@ namespace Be.Stateless.Argument.Validation
 {
 	public static class ArgumentValidatorExtensions
 	{
-		public static IArgumentValidator AddException(this IArgumentValidator validator, Exception exception)
+		public static T AddException<T>(this T validator, Exception exception) where T : IArgumentValidator
 		{
-			var argumentValidator = validator as ArgumentValidator ?? new ArgumentValidator();
-			argumentValidator.AddException(exception);
-			return argumentValidator;
+			if (typeof(T) == typeof(IArgumentValidatorStage2))
+			{
+				var argumentValidator = validator as ArgumentValidatorStage2 ?? new ArgumentValidatorStage2();
+				argumentValidator.AddException(exception);
+				return (T) (IArgumentValidatorStage2) argumentValidator;
+			}
+			else
+			{
+				var argumentValidator = validator as ArgumentValidator ?? new ArgumentValidator();
+				argumentValidator.AddException(exception);
+				return (T) (IArgumentValidator) argumentValidator;
+			}
 		}
 
-		public static IArgumentValidator Validate(this IArgumentValidator validator)
+		public static IArgumentValidatorStage2 Validate(this IArgumentValidator validator)
 		{
 			if (validator != null)
 			{

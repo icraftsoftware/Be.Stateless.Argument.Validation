@@ -24,22 +24,29 @@ namespace Be.Stateless.Argument.Validation
 	public static class TypeArgumentValidatorExtensions
 	{
 		[SuppressMessage("ReSharper", "UnusedParameter.Global")]
-		public static IArgumentValidator IsNullable<T>(this IArgumentValidator validator, T parameter, string parameterName)
+		public static TV IsNullable<TV, TA>(this TV validator, TA parameter, string parameterName) where TV : IArgumentValidator
 		{
-			var type = typeof(T);
+			var type = typeof(TA);
 			return type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>)
 				? validator
-				: validator.AddException(new ArgumentException($"'{parameterName}' must be a nullable type, but is of type '{typeof(T)}', which is not.", parameterName));
+				: validator.AddException(new ArgumentException($"'{parameterName}' must be a nullable type, but is of type '{typeof(TA)}', which is not.", parameterName));
 		}
 
-		public static IArgumentValidator IsOfType<T>(this IArgumentValidator validator, object parameter, string parameterName)
+		public static IArgumentValidator IsOfType<TA>(this IArgumentValidator validator, object parameter, string parameterName)
 		{
-			return parameter is T
+			return parameter is TA
 				? validator
-				: validator.AddException(new ArgumentException($"'{parameterName}' must be of the type '{typeof(T)}', but was of type '{parameter.GetType()}'.", parameterName));
+				: validator.AddException(new ArgumentException($"'{parameterName}' must be of the type '{typeof(TA)}', but was of type '{parameter.GetType()}'.", parameterName));
 		}
 
-		public static IArgumentValidator IsOfType(this IArgumentValidator validator, object parameter, Type type, string parameterName)
+		public static IArgumentValidatorStage2 IsOfType<TA>(this IArgumentValidatorStage2 validator, object parameter, string parameterName)
+		{
+			return parameter is TA
+				? validator
+				: validator.AddException(new ArgumentException($"'{parameterName}' must be of the type '{typeof(TA)}', but was of type '{parameter.GetType()}'.", parameterName));
+		}
+
+		public static TV IsOfType<TV>(this TV validator, object parameter, Type type, string parameterName) where TV : IArgumentValidator
 		{
 			return type.IsInstanceOfType(parameter)
 				? validator

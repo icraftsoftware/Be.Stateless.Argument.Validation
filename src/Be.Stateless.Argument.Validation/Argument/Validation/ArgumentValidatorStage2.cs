@@ -22,15 +22,15 @@ using System.Linq;
 
 namespace Be.Stateless.Argument.Validation
 {
-	internal sealed class ArgumentValidator : IArgumentValidator
+	internal sealed class ArgumentValidatorStage2 : IArgumentValidatorStage2
 	{
-		internal ArgumentValidator()
+		internal ArgumentValidatorStage2()
 		{
 			// optimization for most cases, which will have only one exception
 			ExceptionList = new List<Exception>(1);
 		}
 
-		#region IArgumentValidator Members
+		#region IArgumentValidatorStage2 Members
 
 		public IEnumerable<Exception> Exceptions => ExceptionList.ToArray();
 
@@ -40,7 +40,7 @@ namespace Be.Stateless.Argument.Validation
 
 		internal void AddException(Exception exception)
 		{
-			ExceptionList.Add(exception);
+			ExceptionList.Add(new InvalidOperationException(exception.Message));
 		}
 	}
 }

@@ -30,16 +30,16 @@ namespace Be.Stateless.Argument.Validation.Extensions
 	/// </remarks>
 	public static class EquatableArgumentValidatorExtensions
 	{
-		public static IArgumentValidator IsEqualTo<T>(this IArgumentValidator validator, T comparand, T comparator, string parameterName)
-			where T : IEquatable<T>
+		public static TV IsEqualTo<TV, TA>(this TV validator, TA comparand, TA comparator, string parameterName) where TV : IArgumentValidator
+			where TA : IEquatable<TA>
 		{
 			return comparand.Equals(comparator)
 				? validator
 				: validator.AddException(new ArgumentException($"'{parameterName}' must be equal to {comparator}, but was {comparand}.", parameterName));
 		}
 
-		public static IArgumentValidator IsNotEqualTo<T>(this IArgumentValidator validator, T comparand, T comparator, string parameterName)
-			where T : IEquatable<T>
+		public static TV IsNotEqualTo<TV, TA>(this TV validator, TA comparand, TA comparator, string parameterName) where TV : IArgumentValidator
+			where TA : IEquatable<TA>
 		{
 			return !comparand.Equals(comparator)
 				? validator

@@ -36,6 +36,19 @@ namespace Be.Stateless.Argument.Validation.Extensions
 		}
 
 		[Fact]
+		public void IsEqualToThrowsAtStage2()
+		{
+			Action act = () => Validation.Setup()
+				.IsEqualTo(1, 1, "value")
+				.Validate()
+				.IsEqualTo(1, 2, "object.Property")
+				.Validate();
+
+			act.Should().Throw<InvalidOperationException>()
+				.WithMessage("'object.Property' must be equal to 2, but was 1.*");
+		}
+
+		[Fact]
 		public void IsEqualToThrowsNothing()
 		{
 			Action act = () => Validation.Setup()
@@ -54,6 +67,19 @@ namespace Be.Stateless.Argument.Validation.Extensions
 
 			act.Should().Throw<ArgumentException>()
 				.WithMessage("'value' cannot be equal to 1.*");
+		}
+
+		[Fact]
+		public void IsNotEqualToThrowsAtStage2()
+		{
+			Action act = () => Validation.Setup()
+				.IsNotEqualTo(1, 2, "value")
+				.Validate()
+				.IsNotEqualTo(1, 1, "object.Property")
+				.Validate();
+
+			act.Should().Throw<InvalidOperationException>()
+				.WithMessage("'object.Property' cannot be equal to 1.*");
 		}
 
 		[Fact]

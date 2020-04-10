@@ -16,31 +16,10 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
 namespace Be.Stateless.Argument.Validation
 {
-	internal sealed class ArgumentValidator : IArgumentValidator
-	{
-		internal ArgumentValidator()
-		{
-			// optimization for most cases, which will have only one exception
-			ExceptionList = new List<Exception>(1);
-		}
-
-		#region IArgumentValidator Members
-
-		public IEnumerable<Exception> Exceptions => ExceptionList.ToArray();
-
-		#endregion
-
-		private IList<Exception> ExceptionList { get; }
-
-		internal void AddException(Exception exception)
-		{
-			ExceptionList.Add(exception);
-		}
-	}
+	/// <summary>
+	/// Argument validation's second stage.
+	/// </summary>
+	public interface IArgumentValidatorStage2 : IArgumentValidator { }
 }

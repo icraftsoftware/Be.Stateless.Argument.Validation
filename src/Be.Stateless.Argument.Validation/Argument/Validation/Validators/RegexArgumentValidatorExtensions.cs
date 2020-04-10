@@ -23,7 +23,7 @@ namespace Be.Stateless.Argument.Validation
 {
 	public static class RegexArgumentValidatorExtensions
 	{
-		public static IArgumentValidator Matches(this IArgumentValidator validator, string parameter, Regex regularExpression, string parameterName)
+		public static T Matches<T>(this T validator, string parameter, Regex regularExpression, string parameterName) where T : IArgumentValidator
 		{
 			if (regularExpression == null) throw new ArgumentNullException(nameof(regularExpression));
 			return regularExpression.IsMatch(parameter)
@@ -31,7 +31,7 @@ namespace Be.Stateless.Argument.Validation
 				: validator.AddException(new ArgumentException($"'{parameterName}' must match '{regularExpression}', but was '{parameter}'.", parameterName));
 		}
 
-		public static IArgumentValidator Matches(this IArgumentValidator validator, string parameter, string pattern, string parameterName)
+		public static T Matches<T>(this T validator, string parameter, string pattern, string parameterName) where T : IArgumentValidator
 		{
 			return Regex.IsMatch(parameter, pattern)
 				? validator

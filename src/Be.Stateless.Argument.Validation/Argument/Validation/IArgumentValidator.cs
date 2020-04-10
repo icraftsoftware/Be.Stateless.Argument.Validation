@@ -18,29 +18,14 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Be.Stateless.Argument.Validation
 {
-	internal sealed class ArgumentValidator : IArgumentValidator
+	/// <summary>
+	/// Argument validation's first stage.
+	/// </summary>
+	public interface IArgumentValidator
 	{
-		internal ArgumentValidator()
-		{
-			// optimization for most cases, which will have only one exception
-			ExceptionList = new List<Exception>(1);
-		}
-
-		#region IArgumentValidator Members
-
-		public IEnumerable<Exception> Exceptions => ExceptionList.ToArray();
-
-		#endregion
-
-		private IList<Exception> ExceptionList { get; }
-
-		internal void AddException(Exception exception)
-		{
-			ExceptionList.Add(exception);
-		}
+		IEnumerable<Exception> Exceptions { get; }
 	}
 }
