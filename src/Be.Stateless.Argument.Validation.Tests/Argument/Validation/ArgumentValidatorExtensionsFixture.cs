@@ -17,6 +17,7 @@
 #endregion
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using FluentAssertions;
 using Xunit;
@@ -25,6 +26,28 @@ namespace Be.Stateless.Argument.Validation
 {
 	public class ArgumentValidatorExtensionsFixture
 	{
+		[Fact]
+		[SuppressMessage("ReSharper", "AccessToModifiedClosure")]
+		[SuppressMessage("ReSharper", "PossibleNullReferenceException")]
+		public void ValidateArgumentsAndTheirState()
+		{
+			Tuple<int, int> tuple = null;
+			Action act = () => Validation.Setup()
+				.IsNotNull(tuple, nameof(tuple))
+				.Validate()
+				.IsPositive(tuple.Item1, nameof(tuple.Item1))
+				.IsPositive(tuple.Item2, nameof(tuple.Item2))
+				.Validate();
+
+			act.Should().Throw<ArgumentNullException>()
+				.Where(e => e.ParamName == nameof(tuple));
+
+			tuple = new Tuple<int, int>(-1, -1);
+
+			act.Should().Throw<AggregateException>()
+				.Where(e => e.InnerExceptions.OfType<ArgumentOutOfRangeException>().Count() == 2);
+		}
+
 		[Fact]
 		public void ValidateThrowsAggregateException()
 		{

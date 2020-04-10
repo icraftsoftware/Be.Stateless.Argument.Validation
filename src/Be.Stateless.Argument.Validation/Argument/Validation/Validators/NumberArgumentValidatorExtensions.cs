@@ -22,83 +22,73 @@ namespace Be.Stateless.Argument.Validation
 {
 	public static class NumberArgumentValidatorExtensions
 	{
-		public static ArgumentValidator IsNegative(this ArgumentValidator validator, double parameter, string parameterName)
+		public static IArgumentValidator IsNegative(this IArgumentValidator validator, double parameter, string parameterName)
 		{
 			return parameter > 0d
-				? (validator ?? new ArgumentValidator()).AddException(
-					new ArgumentOutOfRangeException(parameterName, $"Number '{parameterName}' must be negative (<= 0), but was {parameter}."))
+				? validator.AddException(new ArgumentOutOfRangeException(parameterName, $"Number '{parameterName}' must be negative (<= 0), but was {parameter}."))
 				: validator;
 		}
 
-		public static ArgumentValidator IsNegative(this ArgumentValidator validator, float parameter, string parameterName)
+		public static IArgumentValidator IsNegative(this IArgumentValidator validator, float parameter, string parameterName)
 		{
 			return parameter > 0f
-				? (validator ?? new ArgumentValidator()).AddException(
-					new ArgumentOutOfRangeException(parameterName, $"Number '{parameterName}' must be negative (<= 0), but was {parameter}."))
+				? validator.AddException(new ArgumentOutOfRangeException(parameterName, $"Number '{parameterName}' must be negative (<= 0), but was {parameter}."))
 				: validator;
 		}
 
-		public static ArgumentValidator IsNegative(this ArgumentValidator validator, int parameter, string parameterName)
+		public static IArgumentValidator IsNegative(this IArgumentValidator validator, int parameter, string parameterName)
 		{
 			return parameter > 0
-				? (validator ?? new ArgumentValidator()).AddException(
-					new ArgumentOutOfRangeException(parameterName, $"Number '{parameterName}' must be negative (<= 0), but was {parameter}."))
+				? validator.AddException(new ArgumentOutOfRangeException(parameterName, $"Number '{parameterName}' must be negative (<= 0), but was {parameter}."))
 				: validator;
 		}
 
-		public static ArgumentValidator IsNegative(this ArgumentValidator validator, long parameter, string parameterName)
+		public static IArgumentValidator IsNegative(this IArgumentValidator validator, long parameter, string parameterName)
 		{
 			return parameter > 0L
-				? (validator ?? new ArgumentValidator()).AddException(
-					new ArgumentOutOfRangeException(parameterName, $"Number '{parameterName}' must be negative (<= 0), but was {parameter}."))
+				? validator.AddException(new ArgumentOutOfRangeException(parameterName, $"Number '{parameterName}' must be negative (<= 0), but was {parameter}."))
 				: validator;
 		}
 
-		public static ArgumentValidator IsNegative(this ArgumentValidator validator, short parameter, string parameterName)
+		public static IArgumentValidator IsNegative(this IArgumentValidator validator, short parameter, string parameterName)
 		{
 			return parameter > 0
-				? (validator ?? new ArgumentValidator()).AddException(
-					new ArgumentOutOfRangeException(parameterName, $"Number '{parameterName}' must be negative (<= 0), but was {parameter}."))
+				? validator.AddException(new ArgumentOutOfRangeException(parameterName, $"Number '{parameterName}' must be negative (<= 0), but was {parameter}."))
 				: validator;
 		}
 
-		public static ArgumentValidator IsPositive(this ArgumentValidator validator, double parameter, string parameterName)
+		public static IArgumentValidator IsPositive(this IArgumentValidator validator, double parameter, string parameterName)
 		{
 			return parameter < 0d
-				? (validator ?? new ArgumentValidator()).AddException(
-					new ArgumentOutOfRangeException(parameterName, $"Number '{parameterName}' must be positive (>= 0), but was {parameter}."))
+				? validator.AddException(new ArgumentOutOfRangeException(parameterName, $"Number '{parameterName}' must be positive (>= 0), but was {parameter}."))
 				: validator;
 		}
 
-		public static ArgumentValidator IsPositive(this ArgumentValidator validator, float parameter, string parameterName)
+		public static IArgumentValidator IsPositive(this IArgumentValidator validator, float parameter, string parameterName)
 		{
 			return parameter < 0f
-				? (validator ?? new ArgumentValidator()).AddException(
-					new ArgumentOutOfRangeException(parameterName, $"Number '{parameterName}' must be positive (>= 0), but was {parameter}."))
+				? validator.AddException(new ArgumentOutOfRangeException(parameterName, $"Number '{parameterName}' must be positive (>= 0), but was {parameter}."))
 				: validator;
 		}
 
-		public static ArgumentValidator IsPositive(this ArgumentValidator validator, int parameter, string parameterName)
+		public static IArgumentValidator IsPositive(this IArgumentValidator validator, int parameter, string parameterName)
 		{
 			return parameter < 0
-				? (validator ?? new ArgumentValidator()).AddException(
-					new ArgumentOutOfRangeException(parameterName, $"Number '{parameterName}' must be positive (>= 0), but was {parameter}."))
+				? validator.AddException(new ArgumentOutOfRangeException(parameterName, $"Number '{parameterName}' must be positive (>= 0), but was {parameter}."))
 				: validator;
 		}
 
-		public static ArgumentValidator IsPositive(this ArgumentValidator validator, long parameter, string parameterName)
+		public static IArgumentValidator IsPositive(this IArgumentValidator validator, long parameter, string parameterName)
 		{
 			return parameter < 0L
-				? (validator ?? new ArgumentValidator()).AddException(
-					new ArgumentOutOfRangeException(parameterName, $"Number '{parameterName}' must be positive (>= 0), but was {parameter}."))
+				? validator.AddException(new ArgumentOutOfRangeException(parameterName, $"Number '{parameterName}' must be positive (>= 0), but was {parameter}."))
 				: validator;
 		}
 
-		public static ArgumentValidator IsPositive(this ArgumentValidator validator, short parameter, string parameterName)
+		public static IArgumentValidator IsPositive(this IArgumentValidator validator, short parameter, string parameterName)
 		{
 			return parameter < 0
-				? (validator ?? new ArgumentValidator()).AddException(
-					new ArgumentOutOfRangeException(parameterName, $"Number '{parameterName}' must be positive (>= 0), but was {parameter}."))
+				? validator.AddException(new ArgumentOutOfRangeException(parameterName, $"Number '{parameterName}' must be positive (>= 0), but was {parameter}."))
 				: validator;
 		}
 	}

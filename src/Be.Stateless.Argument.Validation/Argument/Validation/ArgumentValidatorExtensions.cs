@@ -23,11 +23,21 @@ namespace Be.Stateless.Argument.Validation
 {
 	public static class ArgumentValidatorExtensions
 	{
-		public static ArgumentValidator Validate(this ArgumentValidator validator)
+		public static IArgumentValidator AddException(this IArgumentValidator validator, Exception exception)
 		{
-			if (validator == null) return null;
-			if (!validator.Exceptions.Skip(1).Any()) throw validator.Exceptions.Single();
-			throw new AggregateException("Argument validation failed for several reasons.", validator.Exceptions);
+			var argumentValidator = validator as ArgumentValidator ?? new ArgumentValidator();
+			argumentValidator.AddException(exception);
+			return argumentValidator;
+		}
+
+		public static IArgumentValidator Validate(this IArgumentValidator validator)
+		{
+			if (validator != null)
+			{
+				if (!validator.Exceptions.Skip(1).Any()) throw validator.Exceptions.Single();
+				throw new AggregateException("Argument validation failed for several reasons.", validator.Exceptions);
+			}
+			return null;
 		}
 	}
 }

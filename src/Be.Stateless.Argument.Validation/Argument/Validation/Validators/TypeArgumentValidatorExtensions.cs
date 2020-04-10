@@ -24,29 +24,26 @@ namespace Be.Stateless.Argument.Validation
 	public static class TypeArgumentValidatorExtensions
 	{
 		[SuppressMessage("ReSharper", "UnusedParameter.Global")]
-		public static ArgumentValidator IsNullable<T>(this ArgumentValidator validator, T parameter, string parameterName)
+		public static IArgumentValidator IsNullable<T>(this IArgumentValidator validator, T parameter, string parameterName)
 		{
 			var type = typeof(T);
 			return type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>)
 				? validator
-				: (validator ?? new ArgumentValidator()).AddException(
-					new ArgumentException($"'{parameterName}' must be a nullable type, but is of type '{typeof(T)}', which is not.", parameterName));
+				: validator.AddException(new ArgumentException($"'{parameterName}' must be a nullable type, but is of type '{typeof(T)}', which is not.", parameterName));
 		}
 
-		public static ArgumentValidator IsOfType<T>(this ArgumentValidator validator, object parameter, string parameterName)
+		public static IArgumentValidator IsOfType<T>(this IArgumentValidator validator, object parameter, string parameterName)
 		{
 			return parameter is T
 				? validator
-				: (validator ?? new ArgumentValidator()).AddException(
-					new ArgumentException($"'{parameterName}' must be of the type '{typeof(T)}', but was of type '{parameter.GetType()}'.", parameterName));
+				: validator.AddException(new ArgumentException($"'{parameterName}' must be of the type '{typeof(T)}', but was of type '{parameter.GetType()}'.", parameterName));
 		}
 
-		public static ArgumentValidator IsOfType(this ArgumentValidator validator, object parameter, Type type, string parameterName)
+		public static IArgumentValidator IsOfType(this IArgumentValidator validator, object parameter, Type type, string parameterName)
 		{
 			return type.IsInstanceOfType(parameter)
 				? validator
-				: (validator ?? new ArgumentValidator()).AddException(
-					new ArgumentException($"'{parameterName}' must be of the type '{type}', but was of type '{parameter.GetType()}'.", parameterName));
+				: validator.AddException(new ArgumentException($"'{parameterName}' must be of the type '{type}', but was of type '{parameter.GetType()}'.", parameterName));
 		}
 	}
 }

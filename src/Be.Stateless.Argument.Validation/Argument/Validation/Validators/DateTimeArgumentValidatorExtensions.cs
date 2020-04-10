@@ -22,20 +22,18 @@ namespace Be.Stateless.Argument.Validation
 {
 	public static class DateTimeArgumentValidatorExtensions
 	{
-		public static ArgumentValidator IsLocalTime(this ArgumentValidator validator, DateTime value, string parameterName)
+		public static IArgumentValidator IsLocalTime(this IArgumentValidator validator, DateTime value, string parameterName)
 		{
 			return value.Kind == DateTimeKind.Local
 				? validator
-				: (validator ?? new ArgumentValidator()).AddException(
-					new ArgumentException($"'{parameterName}' must be a local time, but was of kind {value.Kind}.", parameterName));
+				: validator.AddException(new ArgumentException($"'{parameterName}' must be a local time, but was of kind {value.Kind}.", parameterName));
 		}
 
-		public static ArgumentValidator IsUniversalTime(this ArgumentValidator validator, DateTime value, string parameterName)
+		public static IArgumentValidator IsUniversalTime(this IArgumentValidator validator, DateTime value, string parameterName)
 		{
 			return value.Kind == DateTimeKind.Utc
 				? validator
-				: (validator ?? new ArgumentValidator()).AddException(
-					new ArgumentException($"'{parameterName}' must be a universal time, but was of kind {value.Kind}.", parameterName));
+				: validator.AddException(new ArgumentException($"'{parameterName}' must be a universal time, but was of kind {value.Kind}.", parameterName));
 		}
 	}
 }

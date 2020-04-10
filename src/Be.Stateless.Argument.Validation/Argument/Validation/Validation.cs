@@ -23,7 +23,7 @@ namespace Be.Stateless.Argument.Validation
 	/// </summary>
 	public static class Validation
 	{
-		public static ArgumentValidator Setup()
+		public static IArgumentValidator Setup()
 		{
 			// if no problems are found with your arguments, then no extra objects are allocated.
 			return null;

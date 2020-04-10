@@ -22,20 +22,20 @@ namespace Be.Stateless.Argument.Validation
 {
 	public static class ObjectArgumentValidatorExtensions
 	{
-		public static ArgumentValidator IsNotNull<T>(this ArgumentValidator validator, T parameter, string parameterName)
+		public static IArgumentValidator IsNotNull<T>(this IArgumentValidator validator, T parameter, string parameterName)
 			where T : class
 		{
 			return parameter is null
-				? (validator ?? new ArgumentValidator()).AddException(new ArgumentNullException(parameterName, $"'{parameterName}' cannot be null."))
+				? validator.AddException(new ArgumentNullException(parameterName, $"'{parameterName}' cannot be null."))
 				: validator;
 		}
 
-		public static ArgumentValidator IsNull<T>(this ArgumentValidator validator, T parameter, string parameterName)
+		public static IArgumentValidator IsNull<T>(this IArgumentValidator validator, T parameter, string parameterName)
 			where T : class
 		{
 			return parameter is null
 				? validator
-				: (validator ?? new ArgumentValidator()).AddException(new ArgumentException($"'{parameterName}' must be null.", parameterName));
+				: validator.AddException(new ArgumentException($"'{parameterName}' must be null.", parameterName));
 		}
 	}
 }
