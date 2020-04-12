@@ -20,7 +20,7 @@ using System;
 using FluentAssertions;
 using Xunit;
 
-namespace Be.Stateless.Argument.Validation.Extensions
+namespace Be.Stateless.Argument.Validation.Equatable
 {
 	public class EquatableArgumentValidatorExtensionsFixture
 	{

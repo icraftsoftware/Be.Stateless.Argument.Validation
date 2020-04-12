@@ -18,7 +18,7 @@
 
 using System;
 
-namespace Be.Stateless.Argument.Validation.Extensions
+namespace Be.Stateless.Argument.Validation.Equatable
 {
 	/// <summary>
 	/// Support equality validation for arguments that only implements <see cref="IEquatable{T}"/>.
