@@ -27,14 +27,14 @@ namespace Be.Stateless.Argument.Validation
 	/// <remarks>
 	/// <para>
 	/// Simple, i.e. scalar, argument validators can be chained and evaluated altogether through one single <see
-	/// cref="ArgumentValidatorExtensions.Validate"/> method call.
+	/// cref="ArgumentValidatorExtensions.Check"/> method call.
 	/// </para>
 	/// <para>
 	/// Compound arguments, i.e. nested object properties, however can only be validated via a subsequent call to the <see
-	/// cref="ArgumentValidatorExtensions.Validate"/> method; that is to say, once it has been established that the objects whose
+	/// cref="ArgumentValidatorExtensions.Check"/> method; that is to say, once it has been established that the objects whose
 	/// nested properties are to be validated have themselves been validated. These validations can be written as a separate
-	/// validation setup, see <see cref="Validation.Setup">Validation.Setup</see>, or they can be chained directly after the
-	/// first <see cref="ArgumentValidatorExtensions.Validate"/> method call.
+	/// validation setup, see <see cref="Arguments.Constraints">Arguments.Constraints</see>, or they can be chained directly after the
+	/// first <see cref="ArgumentValidatorExtensions.Check"/> method call.
 	/// </para>
 	/// </remarks>
 	public interface IArgumentValidator

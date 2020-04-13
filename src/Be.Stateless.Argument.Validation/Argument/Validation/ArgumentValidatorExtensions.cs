@@ -39,7 +39,7 @@ namespace Be.Stateless.Argument.Validation
 			}
 		}
 
-		public static INestedArgumentValidator Validate(this IArgumentValidator validator)
+		public static INestedArgumentValidator Check(this IArgumentValidator validator)
 		{
 			if (validator != null)
 			{

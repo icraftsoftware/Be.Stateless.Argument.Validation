@@ -31,9 +31,9 @@ namespace Be.Stateless.Argument.Validation
 		{
 			Tuple<int, int> tuple = new Tuple<int, int>(1, 2);
 
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsDefault(tuple, nameof(tuple))
-				.Validate();
+				.Check();
 
 			act.Should().Throw<ArgumentException>()
 				.WithMessage($"'{nameof(tuple)}' reference type must be null.*");
@@ -45,9 +45,9 @@ namespace Be.Stateless.Argument.Validation
 		{
 			int integer = 12;
 
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsDefault(integer, nameof(integer))
-				.Validate();
+				.Check();
 
 			act.Should().Throw<ArgumentException>()
 				.WithMessage($"'{nameof(integer)}' value type must be default.*");
@@ -59,9 +59,9 @@ namespace Be.Stateless.Argument.Validation
 		{
 			Tuple<int, int> tuple = default;
 
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsNotDefault(tuple, nameof(tuple))
-				.Validate();
+				.Check();
 
 			act.Should().Throw<ArgumentNullException>()
 				.WithMessage($"'{nameof(tuple)}' reference type cannot be null.*");
@@ -73,9 +73,9 @@ namespace Be.Stateless.Argument.Validation
 		{
 			int integer = default;
 
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsNotDefault(integer, nameof(integer))
-				.Validate();
+				.Check();
 
 			act.Should().Throw<ArgumentException>()
 				.WithMessage($"'{nameof(integer)}' value type cannot be default.*");
@@ -84,9 +84,9 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNotNullThrows()
 		{
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsNotNull((string) null, "value")
-				.Validate();
+				.Check();
 
 			act.Should().Throw<ArgumentNullException>()
 				.WithMessage("'value' cannot be null.*");
@@ -95,11 +95,11 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNotNullThrowsForNestedProperties()
 		{
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsNotNull(this, "value")
-				.Validate()
+				.Check()
 				.IsNotNull((string) null, "object.Property")
-				.Validate();
+				.Check();
 
 			act.Should().Throw<ArgumentException>()
 				.WithMessage("'object.Property' cannot be null.*");
@@ -108,9 +108,9 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNotNullThrowsNothing()
 		{
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsNotNull(this, "value")
-				.Validate();
+				.Check();
 
 			act.Should().NotThrow();
 		}
@@ -118,9 +118,9 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNullThrows()
 		{
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsNull(this, "value")
-				.Validate();
+				.Check();
 
 			act.Should().Throw<ArgumentException>()
 				.WithMessage("'value' must be null.*");
@@ -129,11 +129,11 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNullThrowsForNestedProperties()
 		{
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsNull((string) null, "value")
-				.Validate()
+				.Check()
 				.IsNull(this, "object.Property")
-				.Validate();
+				.Check();
 
 			act.Should().Throw<ArgumentException>()
 				.WithMessage("'object.Property' must be null.*");
@@ -142,9 +142,9 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNullThrowsNothing()
 		{
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsNull((string) null, "value")
-				.Validate();
+				.Check();
 
 			act.Should().NotThrow();
 		}

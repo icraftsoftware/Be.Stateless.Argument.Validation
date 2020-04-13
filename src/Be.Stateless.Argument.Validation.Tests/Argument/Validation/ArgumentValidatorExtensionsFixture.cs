@@ -32,13 +32,13 @@ namespace Be.Stateless.Argument.Validation
 		public void ValidateArgumentsAndTheirState()
 		{
 			Tuple<int, int, int> tuple = null;
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsNotNull(tuple, nameof(tuple))
-				.Validate()
+				.Check()
 				.IsPositive(tuple.Item1, $"{nameof(tuple)}.{nameof(tuple.Item1)}")
 				.IsPositive(tuple.Item2, $"{nameof(tuple)}.{nameof(tuple.Item2)}")
 				.IsPositive(tuple.Item3, $"{nameof(tuple)}.{nameof(tuple.Item3)}")
-				.Validate();
+				.Check();
 
 			act.Should().Throw<ArgumentNullException>()
 				.Where(e => e.ParamName == nameof(tuple));
@@ -52,10 +52,10 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void ValidateThrowsAggregateException()
 		{
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsEqualTo(1, 2, "arg1")
 				.IsEqualTo(1, 3, "arg2")
-				.Validate();
+				.Check();
 
 			act.Should().Throw<AggregateException>()
 				.WithMessage("Argument validation failed for several reasons.*")

@@ -27,9 +27,9 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNegativeDoubleThrows()
 		{
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsNegative(1d, "value")
-				.Validate();
+				.Check();
 
 			act.Should().Throw<ArgumentOutOfRangeException>()
 				.WithMessage("Number 'value' must be negative (<= 0), but was 1.*");
@@ -38,9 +38,9 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNegativeDoubleThrowsNothing()
 		{
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsNegative(-1d, "value")
-				.Validate();
+				.Check();
 
 			act.Should().NotThrow();
 		}
@@ -48,9 +48,9 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNegativeFloatThrows()
 		{
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsNegative(1f, "value")
-				.Validate();
+				.Check();
 
 			act.Should().Throw<ArgumentOutOfRangeException>()
 				.WithMessage("Number 'value' must be negative (<= 0), but was 1.*");
@@ -59,9 +59,9 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNegativeFloatThrowsNothing()
 		{
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsNegative(-1f, "value")
-				.Validate();
+				.Check();
 
 			act.Should().NotThrow();
 		}
@@ -69,9 +69,9 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNegativeIntThrows()
 		{
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsNegative(1, "value")
-				.Validate();
+				.Check();
 
 			act.Should().Throw<ArgumentOutOfRangeException>()
 				.WithMessage("Number 'value' must be negative (<= 0), but was 1.*");
@@ -80,9 +80,9 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNegativeIntThrowsNothing()
 		{
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsNegative(-1, "value")
-				.Validate();
+				.Check();
 
 			act.Should().NotThrow();
 		}
@@ -90,9 +90,9 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNegativeLongThrows()
 		{
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsNegative(1L, "value")
-				.Validate();
+				.Check();
 
 			act.Should().Throw<ArgumentOutOfRangeException>()
 				.WithMessage("Number 'value' must be negative (<= 0), but was 1.*");
@@ -101,9 +101,9 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNegativeLongThrowsNothing()
 		{
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsNegative(-1L, "value")
-				.Validate();
+				.Check();
 
 			act.Should().NotThrow();
 		}
@@ -111,9 +111,9 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNegativeShortThrows()
 		{
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsNegative((short) 1, "value")
-				.Validate();
+				.Check();
 
 			act.Should().Throw<ArgumentOutOfRangeException>()
 				.WithMessage("Number 'value' must be negative (<= 0), but was 1.*");
@@ -122,9 +122,9 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNegativeShortThrowsNothing()
 		{
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsNegative((short) -1, "value")
-				.Validate();
+				.Check();
 
 			act.Should().NotThrow();
 		}
@@ -132,9 +132,9 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsPositiveDoubleThrows()
 		{
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsPositive(-1d, "value")
-				.Validate();
+				.Check();
 
 			act.Should().Throw<ArgumentOutOfRangeException>()
 				.WithMessage("Number 'value' must be positive (>= 0), but was -1.*");
@@ -143,9 +143,9 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsPositiveDoubleThrowsNothing()
 		{
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsPositive(1d, "value")
-				.Validate();
+				.Check();
 
 			act.Should().NotThrow();
 		}
@@ -153,9 +153,9 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsPositiveFloatThrows()
 		{
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsPositive(-1f, "value")
-				.Validate();
+				.Check();
 
 			act.Should().Throw<ArgumentOutOfRangeException>()
 				.WithMessage("Number 'value' must be positive (>= 0), but was -1.*");
@@ -164,9 +164,9 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsPositiveFloatThrowsNothing()
 		{
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsPositive(1f, "value")
-				.Validate();
+				.Check();
 
 			act.Should().NotThrow();
 		}
@@ -174,9 +174,9 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsPositiveIntThrows()
 		{
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsPositive(-1, "value")
-				.Validate();
+				.Check();
 
 			act.Should().Throw<ArgumentOutOfRangeException>()
 				.WithMessage("Number 'value' must be positive (>= 0), but was -1.*");
@@ -185,9 +185,9 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsPositiveIntThrowsNothing()
 		{
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsPositive(1, "value")
-				.Validate();
+				.Check();
 
 			act.Should().NotThrow();
 		}
@@ -195,9 +195,9 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsPositiveLongThrows()
 		{
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsPositive(-1L, "value")
-				.Validate();
+				.Check();
 
 			act.Should().Throw<ArgumentOutOfRangeException>()
 				.WithMessage("Number 'value' must be positive (>= 0), but was -1.*");
@@ -206,9 +206,9 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsPositiveLongThrowsNothing()
 		{
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsPositive(1L, "value")
-				.Validate();
+				.Check();
 
 			act.Should().NotThrow();
 		}
@@ -216,9 +216,9 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsPositiveShortThrows()
 		{
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsPositive((short) -1, "value")
-				.Validate();
+				.Check();
 
 			act.Should().Throw<ArgumentOutOfRangeException>()
 				.WithMessage("Number 'value' must be positive (>= 0), but was -1.*");
@@ -227,9 +227,9 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsPositiveShortThrowsNothing()
 		{
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsPositive((short) 1, "value")
-				.Validate();
+				.Check();
 
 			act.Should().NotThrow();
 		}

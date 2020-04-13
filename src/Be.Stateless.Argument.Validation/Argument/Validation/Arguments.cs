@@ -19,14 +19,11 @@
 namespace Be.Stateless.Argument.Validation
 {
 	/// <summary>
-	/// Entry point to fluent C# validation.
+	/// Entry point to fluent C# argument validation.
 	/// </summary>
-	public static class Validation
+	public static class Arguments
 	{
-		public static IArgumentValidator Setup()
-		{
-			// if no problems are found with your arguments, then no extra objects are allocated.
-			return null;
-		}
+		// if no problems are found with your arguments, then no extra objects are allocated.
+		public static IArgumentValidator Constraints => null;
 	}
 }

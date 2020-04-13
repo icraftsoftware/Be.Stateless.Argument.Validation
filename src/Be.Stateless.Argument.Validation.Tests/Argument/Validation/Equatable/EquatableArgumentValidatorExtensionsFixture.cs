@@ -27,9 +27,9 @@ namespace Be.Stateless.Argument.Validation.Equatable
 		[Fact]
 		public void IsEqualToThrows()
 		{
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsEqualTo(1, 2, "value")
-				.Validate();
+				.Check();
 
 			act.Should().Throw<ArgumentException>()
 				.WithMessage("'value' must be equal to 2, but was 1.*");
@@ -38,11 +38,11 @@ namespace Be.Stateless.Argument.Validation.Equatable
 		[Fact]
 		public void IsEqualToThrowsForNestedProperties()
 		{
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsEqualTo(1, 1, "value")
-				.Validate()
+				.Check()
 				.IsEqualTo(1, 2, "object.Property")
-				.Validate();
+				.Check();
 
 			act.Should().Throw<ArgumentException>()
 				.WithMessage("'object.Property' must be equal to 2, but was 1.*");
@@ -51,9 +51,9 @@ namespace Be.Stateless.Argument.Validation.Equatable
 		[Fact]
 		public void IsEqualToThrowsNothing()
 		{
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsEqualTo(7, 7, "value")
-				.Validate();
+				.Check();
 
 			act.Should().NotThrow();
 		}
@@ -61,9 +61,9 @@ namespace Be.Stateless.Argument.Validation.Equatable
 		[Fact]
 		public void IsNotEqualToThrows()
 		{
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsNotEqualTo(1, 1, "value")
-				.Validate();
+				.Check();
 
 			act.Should().Throw<ArgumentException>()
 				.WithMessage("'value' cannot be equal to 1.*");
@@ -72,11 +72,11 @@ namespace Be.Stateless.Argument.Validation.Equatable
 		[Fact]
 		public void IsNotEqualToThrowsForNestedProperties()
 		{
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsNotEqualTo(1, 2, "value")
-				.Validate()
+				.Check()
 				.IsNotEqualTo(1, 1, "object.Property")
-				.Validate();
+				.Check();
 
 			act.Should().Throw<ArgumentException>()
 				.WithMessage("'object.Property' cannot be equal to 1.*");
@@ -85,9 +85,9 @@ namespace Be.Stateless.Argument.Validation.Equatable
 		[Fact]
 		public void IsNotEqualToThrowsNothing()
 		{
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsNotEqualTo(1, 2, "value")
-				.Validate();
+				.Check();
 
 			act.Should().NotThrow();
 		}

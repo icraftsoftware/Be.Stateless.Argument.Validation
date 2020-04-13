@@ -28,9 +28,9 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void MatchesPatternThrows()
 		{
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.Matches("acb", "a*bb", "value")
-				.Validate();
+				.Check();
 
 			act.Should().Throw<ArgumentException>()
 				.WithMessage($"'value' must match 'a*bb', but was 'acb'.*");
@@ -39,9 +39,9 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void MatchesPatternThrowsNothing()
 		{
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.Matches("abb", "a*bb", "value")
-				.Validate();
+				.Check();
 
 			act.Should().NotThrow();
 		}
@@ -51,9 +51,9 @@ namespace Be.Stateless.Argument.Validation
 		{
 			var regex = new Regex("a*bb");
 
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.Matches("acb", regex, "value")
-				.Validate();
+				.Check();
 
 			act.Should().Throw<ArgumentException>()
 				.WithMessage($"'value' must match '{regex}', but was 'acb'.*");
@@ -64,9 +64,9 @@ namespace Be.Stateless.Argument.Validation
 		{
 			var regex = new Regex("a*bb");
 
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.Matches("abb", regex, "value")
-				.Validate();
+				.Check();
 
 			act.Should().NotThrow();
 		}

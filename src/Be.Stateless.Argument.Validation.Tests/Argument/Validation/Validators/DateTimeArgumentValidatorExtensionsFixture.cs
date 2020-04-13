@@ -27,9 +27,9 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsLocalTimeThrows()
 		{
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsLocalTime(DateTime.UtcNow, "value")
-				.Validate();
+				.Check();
 
 			act.Should().Throw<ArgumentException>()
 				.WithMessage("'value' must be a local time, but was of kind UTC.*");
@@ -38,9 +38,9 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsLocalTimeThrowsNothing()
 		{
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsLocalTime(DateTime.Now, "value")
-				.Validate();
+				.Check();
 
 			act.Should().NotThrow();
 		}
@@ -48,9 +48,9 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsUniversalTimeThrows()
 		{
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsUniversalTime(DateTime.Now, "value")
-				.Validate();
+				.Check();
 
 			act.Should().Throw<ArgumentException>()
 				.WithMessage("'value' must be a universal time, but was of kind Local.*");
@@ -59,9 +59,9 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsUniversalTimeThrowsNothing()
 		{
-			Action act = () => Validation.Setup()
+			Action act = () => Arguments.Constraints
 				.IsUniversalTime(DateTime.UtcNow, "value")
-				.Validate();
+				.Check();
 
 			act.Should().NotThrow();
 		}
