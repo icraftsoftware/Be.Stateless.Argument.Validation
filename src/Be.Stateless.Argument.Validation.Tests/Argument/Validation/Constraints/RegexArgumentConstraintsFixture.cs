@@ -17,50 +17,55 @@
 #endregion
 
 using System;
+using System.Text.RegularExpressions;
 using FluentAssertions;
 using Xunit;
 
 namespace Be.Stateless.Argument.Validation
 {
-	public class DateTimeArgumentValidatorExtensionsFixture
+	public class RegexArgumentConstraintsFixture
 	{
 		[Fact]
-		public void IsLocalTimeThrows()
+		public void MatchesPatternThrows()
 		{
 			Action act = () => Arguments.Constraints
-				.IsLocalTime(DateTime.UtcNow, "value")
+				.Matches("acb", "a*bb", "value")
 				.Check();
 
 			act.Should().Throw<ArgumentException>()
-				.WithMessage("'value' must be a local time, but was of kind UTC.*");
+				.WithMessage($"'value' must match 'a*bb', but was 'acb'.*");
 		}
 
 		[Fact]
-		public void IsLocalTimeThrowsNothing()
+		public void MatchesPatternThrowsNothing()
 		{
 			Action act = () => Arguments.Constraints
-				.IsLocalTime(DateTime.Now, "value")
+				.Matches("abb", "a*bb", "value")
 				.Check();
 
 			act.Should().NotThrow();
 		}
 
 		[Fact]
-		public void IsUniversalTimeThrows()
+		public void MatchesRegexThrows()
 		{
+			var regex = new Regex("a*bb");
+
 			Action act = () => Arguments.Constraints
-				.IsUniversalTime(DateTime.Now, "value")
+				.Matches("acb", regex, "value")
 				.Check();
 
 			act.Should().Throw<ArgumentException>()
-				.WithMessage("'value' must be a universal time, but was of kind Local.*");
+				.WithMessage($"'value' must match '{regex}', but was 'acb'.*");
 		}
 
 		[Fact]
-		public void IsUniversalTimeThrowsNothing()
+		public void MatchesRegexThrowsNothing()
 		{
+			var regex = new Regex("a*bb");
+
 			Action act = () => Arguments.Constraints
-				.IsUniversalTime(DateTime.UtcNow, "value")
+				.Matches("abb", regex, "value")
 				.Check();
 
 			act.Should().NotThrow();

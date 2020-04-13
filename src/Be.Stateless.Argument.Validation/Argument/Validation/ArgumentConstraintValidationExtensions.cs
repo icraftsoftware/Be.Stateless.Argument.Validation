@@ -21,30 +21,30 @@ using System.Linq;
 
 namespace Be.Stateless.Argument.Validation
 {
-	public static class ArgumentValidatorExtensions
+	public static class ArgumentConstraintValidationExtensions
 	{
-		public static T AddException<T>(this T validator, Exception exception) where T : IArgumentValidator
+		public static T AddException<T>(this T validator, Exception exception) where T : IArgumentConstraint
 		{
-			if (typeof(T) == typeof(INestedArgumentValidator))
+			if (typeof(T) == typeof(INestedArgumentConstraint))
 			{
-				var argumentValidator = validator as NestedNestedArgumentValidator ?? new NestedNestedArgumentValidator();
+				var argumentValidator = validator as NestedNestedArgumentConstraint ?? new NestedNestedArgumentConstraint();
 				argumentValidator.AddException(exception);
-				return (T) (INestedArgumentValidator) argumentValidator;
+				return (T) (INestedArgumentConstraint) argumentValidator;
 			}
 			else
 			{
-				var argumentValidator = validator as ArgumentValidator ?? new ArgumentValidator();
+				var argumentValidator = validator as ArgumentConstraint ?? new ArgumentConstraint();
 				argumentValidator.AddException(exception);
-				return (T) (IArgumentValidator) argumentValidator;
+				return (T) (IArgumentConstraint) argumentValidator;
 			}
 		}
 
-		public static INestedArgumentValidator Check(this IArgumentValidator validator)
+		public static INestedArgumentConstraint Check(this IArgumentConstraint constraint)
 		{
-			if (validator != null)
+			if (constraint != null)
 			{
-				if (!validator.Exceptions.Skip(1).Any()) throw validator.Exceptions.Single();
-				throw new AggregateException("Argument validation failed for several reasons.", validator.Exceptions);
+				if (!constraint.Exceptions.Skip(1).Any()) throw constraint.Exceptions.Single();
+				throw new AggregateException("Argument validation failed for several reasons.", constraint.Exceptions);
 			}
 			return null;
 		}

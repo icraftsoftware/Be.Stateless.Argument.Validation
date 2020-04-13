@@ -21,9 +21,9 @@ using System.Text.RegularExpressions;
 
 namespace Be.Stateless.Argument.Validation
 {
-	public static class RegexArgumentValidatorExtensions
+	public static class RegexArgumentConstraints
 	{
-		public static T Matches<T>(this T validator, string parameter, Regex regularExpression, string parameterName) where T : IArgumentValidator
+		public static T Matches<T>(this T validator, string parameter, Regex regularExpression, string parameterName) where T : IArgumentConstraint
 		{
 			if (regularExpression == null) throw new ArgumentNullException(nameof(regularExpression));
 			return regularExpression.IsMatch(parameter)
@@ -31,7 +31,7 @@ namespace Be.Stateless.Argument.Validation
 				: validator.AddException(new ArgumentException($"'{parameterName}' must match '{regularExpression}', but was '{parameter}'.", parameterName));
 		}
 
-		public static T Matches<T>(this T validator, string parameter, string pattern, string parameterName) where T : IArgumentValidator
+		public static T Matches<T>(this T validator, string parameter, string pattern, string parameterName) where T : IArgumentConstraint
 		{
 			return Regex.IsMatch(parameter, pattern)
 				? validator

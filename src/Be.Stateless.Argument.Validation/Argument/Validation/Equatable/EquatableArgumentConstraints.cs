@@ -24,14 +24,14 @@ namespace Be.Stateless.Argument.Validation.Equatable
 	/// Support equality validation for arguments that only implements <see cref="IEquatable{T}"/>.
 	/// </summary>
 	/// <remarks>
-	/// This class is in a separate namespace and thus yields precedence to <see cref="ComparableArgumentValidatorExtensions"/>
-	/// for equality validation. This namespace therefore only needs to be included if the arguments to validate only implements
-	/// <see cref="IEquatable{T}"/> but not <see cref="IComparable"/> nor <see cref="IComparable{T}"/>.
+	/// This class is in a separate namespace and thus yields precedence to <see cref="ComparableArgumentConstraints"/> for
+	/// equality validation constraints. This namespace therefore only needs to be included if the arguments to be validated only
+	/// implements <see cref="IEquatable{T}"/> but not <see cref="IComparable"/> nor <see cref="IComparable{T}"/>.
 	/// </remarks>
-	public static class EquatableArgumentValidatorExtensions
+	public static class EquatableArgumentConstraints
 	{
 		public static TV IsEqualTo<TV, TA>(this TV validator, TA comparand, TA comparator, string parameterName)
-			where TV : IArgumentValidator
+			where TV : IArgumentConstraint
 			where TA : IEquatable<TA>
 		{
 			return comparand.Equals(comparator)
@@ -40,7 +40,7 @@ namespace Be.Stateless.Argument.Validation.Equatable
 		}
 
 		public static TV IsNotEqualTo<TV, TA>(this TV validator, TA comparand, TA comparator, string parameterName)
-			where TV : IArgumentValidator
+			where TV : IArgumentConstraint
 			where TA : IEquatable<TA>
 		{
 			return !comparand.Equals(comparator)

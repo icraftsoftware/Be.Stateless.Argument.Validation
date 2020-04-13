@@ -20,72 +20,72 @@ using System;
 
 namespace Be.Stateless.Argument.Validation
 {
-	public static class NumberArgumentValidatorExtensions
+	public static class NumberArgumentConstraints
 	{
-		public static T IsNegative<T>(this T validator, double parameter, string parameterName) where T : IArgumentValidator
+		public static T IsNegative<T>(this T validator, double parameter, string parameterName) where T : IArgumentConstraint
 		{
 			return parameter > 0d
 				? validator.AddException(new ArgumentOutOfRangeException(parameterName, $"Number '{parameterName}' must be negative (<= 0), but was {parameter}."))
 				: validator;
 		}
 
-		public static T IsNegative<T>(this T validator, float parameter, string parameterName) where T : IArgumentValidator
+		public static T IsNegative<T>(this T validator, float parameter, string parameterName) where T : IArgumentConstraint
 		{
 			return parameter > 0f
 				? validator.AddException(new ArgumentOutOfRangeException(parameterName, $"Number '{parameterName}' must be negative (<= 0), but was {parameter}."))
 				: validator;
 		}
 
-		public static T IsNegative<T>(this T validator, int parameter, string parameterName) where T : IArgumentValidator
+		public static T IsNegative<T>(this T validator, int parameter, string parameterName) where T : IArgumentConstraint
 		{
 			return parameter > 0
 				? validator.AddException(new ArgumentOutOfRangeException(parameterName, $"Number '{parameterName}' must be negative (<= 0), but was {parameter}."))
 				: validator;
 		}
 
-		public static T IsNegative<T>(this T validator, long parameter, string parameterName) where T : IArgumentValidator
+		public static T IsNegative<T>(this T validator, long parameter, string parameterName) where T : IArgumentConstraint
 		{
 			return parameter > 0L
 				? validator.AddException(new ArgumentOutOfRangeException(parameterName, $"Number '{parameterName}' must be negative (<= 0), but was {parameter}."))
 				: validator;
 		}
 
-		public static T IsNegative<T>(this T validator, short parameter, string parameterName) where T : IArgumentValidator
+		public static T IsNegative<T>(this T validator, short parameter, string parameterName) where T : IArgumentConstraint
 		{
 			return parameter > 0
 				? validator.AddException(new ArgumentOutOfRangeException(parameterName, $"Number '{parameterName}' must be negative (<= 0), but was {parameter}."))
 				: validator;
 		}
 
-		public static T IsPositive<T>(this T validator, double parameter, string parameterName) where T : IArgumentValidator
+		public static T IsPositive<T>(this T validator, double parameter, string parameterName) where T : IArgumentConstraint
 		{
 			return parameter < 0d
 				? validator.AddException(new ArgumentOutOfRangeException(parameterName, $"Number '{parameterName}' must be positive (>= 0), but was {parameter}."))
 				: validator;
 		}
 
-		public static T IsPositive<T>(this T validator, float parameter, string parameterName) where T : IArgumentValidator
+		public static T IsPositive<T>(this T validator, float parameter, string parameterName) where T : IArgumentConstraint
 		{
 			return parameter < 0f
 				? validator.AddException(new ArgumentOutOfRangeException(parameterName, $"Number '{parameterName}' must be positive (>= 0), but was {parameter}."))
 				: validator;
 		}
 
-		public static T IsPositive<T>(this T validator, int parameter, string parameterName) where T : IArgumentValidator
+		public static T IsPositive<T>(this T validator, int parameter, string parameterName) where T : IArgumentConstraint
 		{
 			return parameter < 0
 				? validator.AddException(new ArgumentOutOfRangeException(parameterName, $"Number '{parameterName}' must be positive (>= 0), but was {parameter}."))
 				: validator;
 		}
 
-		public static T IsPositive<T>(this T validator, long parameter, string parameterName) where T : IArgumentValidator
+		public static T IsPositive<T>(this T validator, long parameter, string parameterName) where T : IArgumentConstraint
 		{
 			return parameter < 0L
 				? validator.AddException(new ArgumentOutOfRangeException(parameterName, $"Number '{parameterName}' must be positive (>= 0), but was {parameter}."))
 				: validator;
 		}
 
-		public static T IsPositive<T>(this T validator, short parameter, string parameterName) where T : IArgumentValidator
+		public static T IsPositive<T>(this T validator, short parameter, string parameterName) where T : IArgumentConstraint
 		{
 			return parameter < 0
 				? validator.AddException(new ArgumentOutOfRangeException(parameterName, $"Number '{parameterName}' must be positive (>= 0), but was {parameter}."))

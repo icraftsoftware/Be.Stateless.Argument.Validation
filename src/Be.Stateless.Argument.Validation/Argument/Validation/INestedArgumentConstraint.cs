@@ -19,7 +19,8 @@
 namespace Be.Stateless.Argument.Validation
 {
 	/// <summary>
-	/// Support and make explicit the validation of compound arguments, i.e. nested object properties.
+	/// Support and make explicit the definition of nested argument, i.e. object property, validation constraints that have to be
+   /// checked.
 	/// </summary>
-	public interface INestedArgumentValidator : IArgumentValidator { }
+	public interface INestedArgumentConstraint : IArgumentConstraint { }
 }

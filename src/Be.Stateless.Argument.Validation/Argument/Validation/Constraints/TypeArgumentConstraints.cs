@@ -21,10 +21,10 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Be.Stateless.Argument.Validation
 {
-	public static class TypeArgumentValidatorExtensions
+	public static class TypeArgumentConstraints
 	{
 		[SuppressMessage("ReSharper", "UnusedParameter.Global")]
-		public static TV IsNullable<TV, TA>(this TV validator, TA parameter, string parameterName) where TV : IArgumentValidator
+		public static TV IsNullable<TV, TA>(this TV validator, TA parameter, string parameterName) where TV : IArgumentConstraint
 		{
 			var type = typeof(TA);
 			return type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>)
@@ -32,21 +32,21 @@ namespace Be.Stateless.Argument.Validation
 				: validator.AddException(new ArgumentException($"'{parameterName}' must be a nullable type, but is of type '{typeof(TA)}', which is not.", parameterName));
 		}
 
-		public static IArgumentValidator IsOfType<TA>(this IArgumentValidator validator, object parameter, string parameterName)
+		public static IArgumentConstraint IsOfType<TA>(this IArgumentConstraint constraint, object parameter, string parameterName)
 		{
 			return parameter is TA
-				? validator
-				: validator.AddException(new ArgumentException($"'{parameterName}' must be of the type '{typeof(TA)}', but was of type '{parameter.GetType()}'.", parameterName));
+				? constraint
+				: constraint.AddException(new ArgumentException($"'{parameterName}' must be of the type '{typeof(TA)}', but was of type '{parameter.GetType()}'.", parameterName));
 		}
 
-		public static INestedArgumentValidator IsOfType<TA>(this INestedArgumentValidator validator, object parameter, string parameterName)
+		public static INestedArgumentConstraint IsOfType<TA>(this INestedArgumentConstraint constraint, object parameter, string parameterName)
 		{
 			return parameter is TA
-				? validator
-				: validator.AddException(new ArgumentException($"'{parameterName}' must be of the type '{typeof(TA)}', but was of type '{parameter.GetType()}'.", parameterName));
+				? constraint
+				: constraint.AddException(new ArgumentException($"'{parameterName}' must be of the type '{typeof(TA)}', but was of type '{parameter.GetType()}'.", parameterName));
 		}
 
-		public static TV IsOfType<TV>(this TV validator, object parameter, Type type, string parameterName) where TV : IArgumentValidator
+		public static TV IsOfType<TV>(this TV validator, object parameter, Type type, string parameterName) where TV : IArgumentConstraint
 		{
 			return type.IsInstanceOfType(parameter)
 				? validator

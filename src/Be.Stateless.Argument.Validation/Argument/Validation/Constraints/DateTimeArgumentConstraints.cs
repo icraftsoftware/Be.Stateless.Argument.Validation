@@ -20,20 +20,20 @@ using System;
 
 namespace Be.Stateless.Argument.Validation
 {
-	public static class StringArgumentValidatorExtensions
+	public static class DateTimeArgumentConstraints
 	{
-		public static T IsNotNullOrEmpty<T>(this T validator, string parameter, string parameterName) where T : IArgumentValidator
+		public static T IsLocalTime<T>(this T validator, DateTime value, string parameterName) where T : IArgumentConstraint
 		{
-			return string.IsNullOrEmpty(parameter)
-				? validator.AddException(new ArgumentNullException(parameterName, $"'{parameterName}' cannot be null or empty."))
-				: validator;
+			return value.Kind == DateTimeKind.Local
+				? validator
+				: validator.AddException(new ArgumentException($"'{parameterName}' must be a local time, but was of kind {value.Kind}.", parameterName));
 		}
 
-		public static T IsNotNullOrWhiteSpace<T>(this T validator, string parameter, string parameterName) where T : IArgumentValidator
+		public static T IsUniversalTime<T>(this T validator, DateTime value, string parameterName) where T : IArgumentConstraint
 		{
-			return string.IsNullOrWhiteSpace(parameter)
-				? validator.AddException(new ArgumentNullException(parameterName, $"'{parameterName}' cannot be null, empty, or contain only white spaces."))
-				: validator;
+			return value.Kind == DateTimeKind.Utc
+				? validator
+				: validator.AddException(new ArgumentException($"'{parameterName}' must be a universal time, but was of kind {value.Kind}.", parameterName));
 		}
 	}
 }

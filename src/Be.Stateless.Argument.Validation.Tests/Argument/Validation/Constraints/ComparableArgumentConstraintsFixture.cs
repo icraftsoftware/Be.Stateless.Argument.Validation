@@ -22,7 +22,7 @@ using Xunit;
 
 namespace Be.Stateless.Argument.Validation
 {
-	public class ComparableArgumentValidatorExtensionsFixture
+	public class ComparableArgumentConstraintsFixture
 	{
 		[Fact]
 		public void IsEqualToThrows()

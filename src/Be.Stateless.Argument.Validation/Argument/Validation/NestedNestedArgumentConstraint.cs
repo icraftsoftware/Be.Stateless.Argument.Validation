@@ -20,11 +20,11 @@ using System;
 
 namespace Be.Stateless.Argument.Validation
 {
-	internal sealed class NestedNestedArgumentValidator : ArgumentValidator, INestedArgumentValidator
+	internal sealed class NestedNestedArgumentConstraint : ArgumentConstraint, INestedArgumentConstraint
 	{
 		internal new void AddException(Exception exception)
 		{
-			// ArgumentNullException is not really accurate as the object which is dereferenced is itself not null
+			// ArgumentNullException is not really accurate as the object which is dereferenced should already have been validated
 			if (exception is ArgumentNullException nullException) ExceptionList.Add(new ArgumentException(nullException.Message, nullException.ParamName));
 			ExceptionList.Add(exception);
 		}

@@ -20,10 +20,10 @@ using System;
 
 namespace Be.Stateless.Argument.Validation
 {
-	public static class ComparableArgumentValidatorExtensions
+	public static class ComparableArgumentConstraints
 	{
 		public static TV IsEqualTo<TV, TA>(this TV validator, TA comparand, TA comparator, string parameterName)
-			where TV : IArgumentValidator
+			where TV : IArgumentConstraint
 			where TA : IComparable, IComparable<TA>
 		{
 			return comparand.CompareTo(comparator) == 0
@@ -32,7 +32,7 @@ namespace Be.Stateless.Argument.Validation
 		}
 
 		public static TV IsGreaterOrEqualThan<TV, TA>(this TV validator, TA comparand, TA comparator, string parameterName)
-			where TV : IArgumentValidator
+			where TV : IArgumentConstraint
 			where TA : IComparable, IComparable<TA>
 		{
 			return comparand.CompareTo(comparator) >= 0
@@ -41,7 +41,7 @@ namespace Be.Stateless.Argument.Validation
 		}
 
 		public static TV IsGreaterThan<TV, TA>(this TV validator, TA comparand, TA comparator, string parameterName)
-			where TV : IArgumentValidator
+			where TV : IArgumentConstraint
 			where TA : IComparable, IComparable<TA>
 		{
 			return comparand.CompareTo(comparator) > 0
@@ -50,7 +50,7 @@ namespace Be.Stateless.Argument.Validation
 		}
 
 		public static TV IsLessOrEqualThan<TV, TA>(this TV validator, TA comparand, TA comparator, string parameterName)
-			where TV : IArgumentValidator
+			where TV : IArgumentConstraint
 			where TA : IComparable, IComparable<TA>
 		{
 			return comparand.CompareTo(comparator) <= 0
@@ -59,7 +59,7 @@ namespace Be.Stateless.Argument.Validation
 		}
 
 		public static TV IsLessThan<TV, TA>(this TV validator, TA comparand, TA comparator, string parameterName)
-			where TV : IArgumentValidator
+			where TV : IArgumentConstraint
 			where TA : IComparable, IComparable<TA>
 		{
 			return comparand.CompareTo(comparator) < 0
@@ -68,7 +68,7 @@ namespace Be.Stateless.Argument.Validation
 		}
 
 		public static TV IsNotEqualTo<TV, TA>(this TV validator, TA comparand, TA comparator, string parameterName)
-			where TV : IArgumentValidator
+			where TV : IArgumentConstraint
 			where TA : IComparable, IComparable<TA>
 		{
 			return comparand.CompareTo(comparator) != 0

@@ -23,7 +23,7 @@ using Xunit;
 
 namespace Be.Stateless.Argument.Validation
 {
-	public class TypeArgumentValidatorExtensionsFixture
+	public class TypeArgumentConstraintsFixture
 	{
 		[Fact]
 		public void IsNullableThrows()

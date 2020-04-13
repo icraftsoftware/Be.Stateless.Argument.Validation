@@ -17,30 +17,23 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Be.Stateless.Argument.Validation
 {
-	internal class ArgumentValidator : IArgumentValidator
+	public static class StringArgumentConstraints
 	{
-		protected internal ArgumentValidator()
+		public static T IsNotNullOrEmpty<T>(this T validator, string parameter, string parameterName) where T : IArgumentConstraint
 		{
-			// optimization for most cases, which will have only one exception
-			ExceptionList = new List<Exception>(1);
+			return string.IsNullOrEmpty(parameter)
+				? validator.AddException(new ArgumentNullException(parameterName, $"'{parameterName}' cannot be null or empty."))
+				: validator;
 		}
 
-		#region IArgumentValidator Members
-
-		public IEnumerable<Exception> Exceptions => ExceptionList.ToArray();
-
-		#endregion
-
-		protected IList<Exception> ExceptionList { get; }
-
-		internal void AddException(Exception exception)
+		public static T IsNotNullOrWhiteSpace<T>(this T validator, string parameter, string parameterName) where T : IArgumentConstraint
 		{
-			ExceptionList.Add(exception);
+			return string.IsNullOrWhiteSpace(parameter)
+				? validator.AddException(new ArgumentNullException(parameterName, $"'{parameterName}' cannot be null, empty, or contain only white spaces."))
+				: validator;
 		}
 	}
 }

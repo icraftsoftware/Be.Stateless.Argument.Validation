@@ -23,7 +23,7 @@ using Xunit;
 
 namespace Be.Stateless.Argument.Validation
 {
-	public class ObjectArgumentValidatorExtensionsFixture
+	public class ObjectArgumentConstraintsFixture
 	{
 		[Fact]
 		[SuppressMessage("ReSharper", "ExpressionIsAlwaysNull")]

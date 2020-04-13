@@ -20,9 +20,9 @@ using System;
 
 namespace Be.Stateless.Argument.Validation
 {
-	public static class ObjectArgumentValidatorExtensions
+	public static class ObjectArgumentConstraints
 	{
-		public static TV IsDefault<TV, TA>(this TV validator, TA parameter, string parameterName) where TV : IArgumentValidator
+		public static TV IsDefault<TV, TA>(this TV validator, TA parameter, string parameterName) where TV : IArgumentConstraint
 		{
 			return Equals(parameter, default(TA))
 				? validator
@@ -31,7 +31,7 @@ namespace Be.Stateless.Argument.Validation
 					: validator.AddException(new ArgumentException($"'{parameterName}' value type must be default.", parameterName));
 		}
 
-		public static TV IsNotDefault<TV, TA>(this TV validator, TA parameter, string parameterName) where TV : IArgumentValidator
+		public static TV IsNotDefault<TV, TA>(this TV validator, TA parameter, string parameterName) where TV : IArgumentConstraint
 		{
 			return !Equals(parameter, default(TA))
 				? validator
@@ -41,7 +41,7 @@ namespace Be.Stateless.Argument.Validation
 		}
 
 		public static TV IsNotNull<TV, TA>(this TV validator, TA parameter, string parameterName)
-			where TV : IArgumentValidator
+			where TV : IArgumentConstraint
 			where TA : class
 		{
 			return parameter is null
@@ -50,7 +50,7 @@ namespace Be.Stateless.Argument.Validation
 		}
 
 		public static TV IsNull<TV, TA>(this TV validator, TA parameter, string parameterName)
-			where TV : IArgumentValidator
+			where TV : IArgumentConstraint
 			where TA : class
 		{
 			return parameter is null

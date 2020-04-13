@@ -24,12 +24,12 @@ using Xunit;
 
 namespace Be.Stateless.Argument.Validation
 {
-	public class ArgumentValidatorExtensionsFixture
+	public class ArgumentConstraintValidationExtensionsFixture
 	{
 		[Fact]
 		[SuppressMessage("ReSharper", "AccessToModifiedClosure")]
 		[SuppressMessage("ReSharper", "PossibleNullReferenceException")]
-		public void ValidateArgumentsAndTheirState()
+		public void CheckArgumentsAndTheirState()
 		{
 			Tuple<int, int, int> tuple = null;
 			Action act = () => Arguments.Constraints
@@ -50,7 +50,7 @@ namespace Be.Stateless.Argument.Validation
 		}
 
 		[Fact]
-		public void ValidateThrowsAggregateException()
+		public void CheckThrowsAggregateException()
 		{
 			Action act = () => Arguments.Constraints
 				.IsEqualTo(1, 2, "arg1")

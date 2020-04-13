@@ -22,7 +22,7 @@ using Xunit;
 
 namespace Be.Stateless.Argument.Validation
 {
-	public class NumberArgumentValidatorExtensionsFixture
+	public class NumberArgumentConstraintsFixture
 	{
 		[Fact]
 		public void IsNegativeDoubleThrows()

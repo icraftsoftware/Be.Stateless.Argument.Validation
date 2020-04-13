@@ -22,7 +22,7 @@ using Xunit;
 
 namespace Be.Stateless.Argument.Validation
 {
-	public class StringArgumentValidatorExtensionsFixture
+	public class StringArgumentConstraintsFixture
 	{
 		[Fact]
 		public void IsNotNullOrEmptyThrows()

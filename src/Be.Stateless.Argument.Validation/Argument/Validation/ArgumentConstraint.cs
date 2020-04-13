@@ -17,23 +17,30 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Be.Stateless.Argument.Validation
 {
-	public static class DateTimeArgumentValidatorExtensions
+	internal class ArgumentConstraint : IArgumentConstraint
 	{
-		public static T IsLocalTime<T>(this T validator, DateTime value, string parameterName) where T : IArgumentValidator
+		protected internal ArgumentConstraint()
 		{
-			return value.Kind == DateTimeKind.Local
-				? validator
-				: validator.AddException(new ArgumentException($"'{parameterName}' must be a local time, but was of kind {value.Kind}.", parameterName));
+			// optimization for most cases, which will have only one exception
+			ExceptionList = new List<Exception>(1);
 		}
 
-		public static T IsUniversalTime<T>(this T validator, DateTime value, string parameterName) where T : IArgumentValidator
+		#region IArgumentConstraint Members
+
+		public IEnumerable<Exception> Exceptions => ExceptionList.ToArray();
+
+		#endregion
+
+		protected IList<Exception> ExceptionList { get; }
+
+		internal void AddException(Exception exception)
 		{
-			return value.Kind == DateTimeKind.Utc
-				? validator
-				: validator.AddException(new ArgumentException($"'{parameterName}' must be a universal time, but was of kind {value.Kind}.", parameterName));
+			ExceptionList.Add(exception);
 		}
 	}
 }
