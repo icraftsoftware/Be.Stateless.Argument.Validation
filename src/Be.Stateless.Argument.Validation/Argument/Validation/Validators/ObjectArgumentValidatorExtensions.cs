@@ -22,7 +22,8 @@ namespace Be.Stateless.Argument.Validation
 {
 	public static class ObjectArgumentValidatorExtensions
 	{
-		public static TV IsNotNull<TV, TA>(this TV validator, TA parameter, string parameterName) where TV : IArgumentValidator
+		public static TV IsNotNull<TV, TA>(this TV validator, TA parameter, string parameterName)
+			where TV : IArgumentValidator
 			where TA : class
 		{
 			return parameter is null
@@ -30,7 +31,8 @@ namespace Be.Stateless.Argument.Validation
 				: validator;
 		}
 
-		public static TV IsNull<TV, TA>(this TV validator, TA parameter, string parameterName) where TV : IArgumentValidator
+		public static TV IsNull<TV, TA>(this TV validator, TA parameter, string parameterName)
+			where TV : IArgumentValidator
 			where TA : class
 		{
 			return parameter is null

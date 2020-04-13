@@ -30,7 +30,8 @@ namespace Be.Stateless.Argument.Validation.Equatable
 	/// </remarks>
 	public static class EquatableArgumentValidatorExtensions
 	{
-		public static TV IsEqualTo<TV, TA>(this TV validator, TA comparand, TA comparator, string parameterName) where TV : IArgumentValidator
+		public static TV IsEqualTo<TV, TA>(this TV validator, TA comparand, TA comparator, string parameterName)
+			where TV : IArgumentValidator
 			where TA : IEquatable<TA>
 		{
 			return comparand.Equals(comparator)
@@ -38,7 +39,8 @@ namespace Be.Stateless.Argument.Validation.Equatable
 				: validator.AddException(new ArgumentException($"'{parameterName}' must be equal to {comparator}, but was {comparand}.", parameterName));
 		}
 
-		public static TV IsNotEqualTo<TV, TA>(this TV validator, TA comparand, TA comparator, string parameterName) where TV : IArgumentValidator
+		public static TV IsNotEqualTo<TV, TA>(this TV validator, TA comparand, TA comparator, string parameterName)
+			where TV : IArgumentValidator
 			where TA : IEquatable<TA>
 		{
 			return !comparand.Equals(comparator)
