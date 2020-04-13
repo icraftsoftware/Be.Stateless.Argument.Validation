@@ -36,7 +36,7 @@ namespace Be.Stateless.Argument.Validation
 		}
 
 		[Fact]
-		public void IsNotNullThrowsAtStage2()
+		public void IsNotNullThrowsForNestedProperties()
 		{
 			Action act = () => Validation.Setup()
 				.IsNotNull(this, "value")
@@ -44,7 +44,7 @@ namespace Be.Stateless.Argument.Validation
 				.IsNotNull((string) null, "object.Property")
 				.Validate();
 
-			act.Should().Throw<InvalidOperationException>()
+			act.Should().Throw<ArgumentException>()
 				.WithMessage("'object.Property' cannot be null.*");
 		}
 
@@ -70,7 +70,7 @@ namespace Be.Stateless.Argument.Validation
 		}
 
 		[Fact]
-		public void IsNullThrowsAtStage2()
+		public void IsNullThrowsForNestedProperties()
 		{
 			Action act = () => Validation.Setup()
 				.IsNull((string) null, "value")
@@ -78,7 +78,7 @@ namespace Be.Stateless.Argument.Validation
 				.IsNull(this, "object.Property")
 				.Validate();
 
-			act.Should().Throw<InvalidOperationException>()
+			act.Should().Throw<ArgumentException>()
 				.WithMessage("'object.Property' must be null.*");
 		}
 

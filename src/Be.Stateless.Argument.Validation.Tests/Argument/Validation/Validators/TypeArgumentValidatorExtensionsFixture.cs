@@ -37,7 +37,7 @@ namespace Be.Stateless.Argument.Validation
 		}
 
 		[Fact]
-		public void IsNullableThrowsAtStage2()
+		public void IsNullableThrowsForNestedProperties()
 		{
 			Action act = () => Validation.Setup()
 				.IsNullable((int?) 0, "value")
@@ -45,7 +45,7 @@ namespace Be.Stateless.Argument.Validation
 				.IsNullable(0, "object.Property")
 				.Validate();
 
-			act.Should().Throw<InvalidOperationException>()
+			act.Should().Throw<ArgumentException>()
 				.WithMessage($"'object.Property' must be a nullable type, but is of type '{typeof(int)}', which is not.*");
 		}
 
@@ -71,7 +71,7 @@ namespace Be.Stateless.Argument.Validation
 		}
 
 		[Fact]
-		public void IsOfTypeGenericThrowsAtStage2()
+		public void IsOfTypeGenericThrowsForNestedProperties()
 		{
 			Action act = () => Validation.Setup()
 				.IsOfType<IEnumerable<int>>(new List<int>(), "value")
@@ -79,7 +79,7 @@ namespace Be.Stateless.Argument.Validation
 				.IsOfType<IEnumerable<int>>("string parameter", "object.Property")
 				.Validate();
 
-			act.Should().Throw<InvalidOperationException>()
+			act.Should().Throw<ArgumentException>()
 				.WithMessage($"'object.Property' must be of the type '{typeof(IEnumerable<int>)}', but was of type '{typeof(string)}'.*");
 		}
 
@@ -105,7 +105,7 @@ namespace Be.Stateless.Argument.Validation
 		}
 
 		[Fact]
-		public void IsOfTypeThrowsAtStage2()
+		public void IsOfTypeThrowsForNestedProperties()
 		{
 			Action act = () => Validation.Setup()
 				.IsOfType(new List<int>(), typeof(IEnumerable<int>), "value")
@@ -113,7 +113,7 @@ namespace Be.Stateless.Argument.Validation
 				.IsOfType("string parameter", typeof(IEnumerable<int>), "object.Property")
 				.Validate();
 
-			act.Should().Throw<InvalidOperationException>()
+			act.Should().Throw<ArgumentException>()
 				.WithMessage($"'object.Property' must be of the type '{typeof(IEnumerable<int>)}', but was of type '{typeof(string)}'.*");
 		}
 

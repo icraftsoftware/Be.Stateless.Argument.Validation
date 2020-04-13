@@ -25,11 +25,11 @@ namespace Be.Stateless.Argument.Validation
 	{
 		public static T AddException<T>(this T validator, Exception exception) where T : IArgumentValidator
 		{
-			if (typeof(T) == typeof(IArgumentValidatorStage2))
+			if (typeof(T) == typeof(INestedArgumentValidator))
 			{
-				var argumentValidator = validator as ArgumentValidatorStage2 ?? new ArgumentValidatorStage2();
+				var argumentValidator = validator as NestedNestedArgumentValidator ?? new NestedNestedArgumentValidator();
 				argumentValidator.AddException(exception);
-				return (T) (IArgumentValidatorStage2) argumentValidator;
+				return (T) (INestedArgumentValidator) argumentValidator;
 			}
 			else
 			{
@@ -39,7 +39,7 @@ namespace Be.Stateless.Argument.Validation
 			}
 		}
 
-		public static IArgumentValidatorStage2 Validate(this IArgumentValidator validator)
+		public static INestedArgumentValidator Validate(this IArgumentValidator validator)
 		{
 			if (validator != null)
 			{

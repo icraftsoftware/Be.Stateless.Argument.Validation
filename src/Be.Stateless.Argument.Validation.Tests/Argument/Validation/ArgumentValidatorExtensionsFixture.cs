@@ -46,7 +46,7 @@ namespace Be.Stateless.Argument.Validation
 			tuple = new Tuple<int, int, int>(1, -1, -1);
 
 			act.Should().Throw<AggregateException>()
-				.Where(e => e.InnerExceptions.OfType<InvalidOperationException>().Count() == 2);
+				.Where(e => e.InnerExceptions.OfType<ArgumentOutOfRangeException>().Count() == 2);
 		}
 
 		[Fact]

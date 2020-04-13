@@ -36,7 +36,7 @@ namespace Be.Stateless.Argument.Validation
 		}
 
 		[Fact]
-		public void IsEqualToThrowsAtStage2()
+		public void IsEqualToThrowsForNestedProperties()
 		{
 			Action act = () => Validation.Setup()
 				.IsEqualTo(7, 7, "value")
@@ -44,7 +44,7 @@ namespace Be.Stateless.Argument.Validation
 				.IsEqualTo(1, 2, "object.Property")
 				.Validate();
 
-			act.Should().Throw<InvalidOperationException>()
+			act.Should().Throw<ArgumentException>()
 				.WithMessage("'object.Property' must be equal to 2, but was 1.*");
 		}
 
@@ -70,7 +70,7 @@ namespace Be.Stateless.Argument.Validation
 		}
 
 		[Fact]
-		public void IsGreaterOrEqualThanThrowsAtStage2()
+		public void IsGreaterOrEqualThanThrowsForNestedProperties()
 		{
 			Action act = () => Validation.Setup()
 				.IsGreaterOrEqualThan(7, 7, "value")
@@ -78,7 +78,7 @@ namespace Be.Stateless.Argument.Validation
 				.IsGreaterOrEqualThan(1, 2, "object.Property")
 				.Validate();
 
-			act.Should().Throw<InvalidOperationException>()
+			act.Should().Throw<ArgumentException>()
 				.WithMessage("'object.Property' must be greater or equal than 2, but was 1.*");
 		}
 
@@ -104,7 +104,7 @@ namespace Be.Stateless.Argument.Validation
 		}
 
 		[Fact]
-		public void IsGreaterThanThrowsAtStage2()
+		public void IsGreaterThanThrowsForNestedProperties()
 		{
 			Action act = () => Validation.Setup()
 				.IsGreaterThan(7, 6, "value")
@@ -112,7 +112,7 @@ namespace Be.Stateless.Argument.Validation
 				.IsGreaterThan(1, 2, "object.Property")
 				.Validate();
 
-			act.Should().Throw<InvalidOperationException>()
+			act.Should().Throw<ArgumentException>()
 				.WithMessage("'object.Property' must be greater than 2, but was 1.*");
 		}
 
@@ -138,7 +138,7 @@ namespace Be.Stateless.Argument.Validation
 		}
 
 		[Fact]
-		public void IsLessOrEqualThanThrowsAtStage2()
+		public void IsLessOrEqualThanThrowsForNestedProperties()
 		{
 			Action act = () => Validation.Setup()
 				.IsLessOrEqualThan(6, 7, "value")
@@ -146,7 +146,7 @@ namespace Be.Stateless.Argument.Validation
 				.IsLessOrEqualThan(2, 1, "object.Property")
 				.Validate();
 
-			act.Should().Throw<InvalidOperationException>()
+			act.Should().Throw<ArgumentException>()
 				.WithMessage("'object.Property' must be less or equal than 1, but was 2.*");
 		}
 
@@ -172,7 +172,7 @@ namespace Be.Stateless.Argument.Validation
 		}
 
 		[Fact]
-		public void IsLessThanThrowsAtStage2()
+		public void IsLessThanThrowsForNestedProperties()
 		{
 			Action act = () => Validation.Setup()
 				.IsLessThan(6, 7, "value")
@@ -180,7 +180,7 @@ namespace Be.Stateless.Argument.Validation
 				.IsLessThan(2, 1, "object.Property")
 				.Validate();
 
-			act.Should().Throw<InvalidOperationException>()
+			act.Should().Throw<ArgumentException>()
 				.WithMessage("'object.Property' must be less than 1, but was 2.*");
 		}
 
@@ -206,7 +206,7 @@ namespace Be.Stateless.Argument.Validation
 		}
 
 		[Fact]
-		public void IsNotEqualToThrowsAtStage2()
+		public void IsNotEqualToThrowsForNestedProperties()
 		{
 			Action act = () => Validation.Setup()
 				.IsNotEqualTo(1, 2, "value")
@@ -214,7 +214,7 @@ namespace Be.Stateless.Argument.Validation
 				.IsNotEqualTo(1, 1, "object.Property")
 				.Validate();
 
-			act.Should().Throw<InvalidOperationException>()
+			act.Should().Throw<ArgumentException>()
 				.WithMessage("'object.Property' cannot be equal to 1.*");
 		}
 

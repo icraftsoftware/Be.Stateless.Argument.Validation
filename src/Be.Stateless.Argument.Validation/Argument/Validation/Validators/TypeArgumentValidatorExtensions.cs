@@ -39,7 +39,7 @@ namespace Be.Stateless.Argument.Validation
 				: validator.AddException(new ArgumentException($"'{parameterName}' must be of the type '{typeof(TA)}', but was of type '{parameter.GetType()}'.", parameterName));
 		}
 
-		public static IArgumentValidatorStage2 IsOfType<TA>(this IArgumentValidatorStage2 validator, object parameter, string parameterName)
+		public static INestedArgumentValidator IsOfType<TA>(this INestedArgumentValidator validator, object parameter, string parameterName)
 		{
 			return parameter is TA
 				? validator

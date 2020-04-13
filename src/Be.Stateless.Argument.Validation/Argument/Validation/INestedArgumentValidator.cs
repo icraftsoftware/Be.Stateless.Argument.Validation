@@ -16,31 +16,10 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
 namespace Be.Stateless.Argument.Validation
 {
-	internal sealed class ArgumentValidatorStage2 : IArgumentValidatorStage2
-	{
-		internal ArgumentValidatorStage2()
-		{
-			// optimization for most cases, which will have only one exception
-			ExceptionList = new List<Exception>(1);
-		}
-
-		#region IArgumentValidatorStage2 Members
-
-		public IEnumerable<Exception> Exceptions => ExceptionList.ToArray();
-
-		#endregion
-
-		private IList<Exception> ExceptionList { get; }
-
-		internal void AddException(Exception exception)
-		{
-			ExceptionList.Add(new InvalidOperationException(exception.Message));
-		}
-	}
+	/// <summary>
+	/// Support and make explicit the validation of compound arguments, i.e. nested object properties.
+	/// </summary>
+	public interface INestedArgumentValidator : IArgumentValidator { }
 }

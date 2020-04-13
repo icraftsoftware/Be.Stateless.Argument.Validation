@@ -16,10 +16,17 @@
 
 #endregion
 
+using System;
+
 namespace Be.Stateless.Argument.Validation
 {
-	/// <summary>
-	/// Argument validation's second stage.
-	/// </summary>
-	public interface IArgumentValidatorStage2 : IArgumentValidator { }
+	internal sealed class NestedNestedArgumentValidator : ArgumentValidator, INestedArgumentValidator
+	{
+		internal new void AddException(Exception exception)
+		{
+			// ArgumentNullException is not really accurate as the object which is dereferenced is itself not null
+			if (exception is ArgumentNullException nullException) ExceptionList.Add(new ArgumentException(nullException.Message, nullException.ParamName));
+			ExceptionList.Add(exception);
+		}
+	}
 }
