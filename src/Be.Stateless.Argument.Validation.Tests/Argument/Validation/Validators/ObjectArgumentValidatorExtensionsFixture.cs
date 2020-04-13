@@ -17,6 +17,7 @@
 #endregion
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using FluentAssertions;
 using Xunit;
 
@@ -24,6 +25,62 @@ namespace Be.Stateless.Argument.Validation
 {
 	public class ObjectArgumentValidatorExtensionsFixture
 	{
+		[Fact]
+		[SuppressMessage("ReSharper", "ExpressionIsAlwaysNull")]
+		public void IsDefaultClass()
+		{
+			Tuple<int, int> tuple = new Tuple<int, int>(1, 2);
+
+			Action act = () => Validation.Setup()
+				.IsDefault(tuple, nameof(tuple))
+				.Validate();
+
+			act.Should().Throw<ArgumentException>()
+				.WithMessage($"'{nameof(tuple)}' reference type must be null.*");
+		}
+
+		[Fact]
+		[SuppressMessage("ReSharper", "ExpressionIsAlwaysNull")]
+		public void IsDefaultStruct()
+		{
+			int integer = 12;
+
+			Action act = () => Validation.Setup()
+				.IsDefault(integer, nameof(integer))
+				.Validate();
+
+			act.Should().Throw<ArgumentException>()
+				.WithMessage($"'{nameof(integer)}' value type must be default.*");
+		}
+
+		[Fact]
+		[SuppressMessage("ReSharper", "ExpressionIsAlwaysNull")]
+		public void IsNotDefaultClass()
+		{
+			Tuple<int, int> tuple = default;
+
+			Action act = () => Validation.Setup()
+				.IsNotDefault(tuple, nameof(tuple))
+				.Validate();
+
+			act.Should().Throw<ArgumentNullException>()
+				.WithMessage($"'{nameof(tuple)}' reference type cannot be null.*");
+		}
+
+		[Fact]
+		[SuppressMessage("ReSharper", "ExpressionIsAlwaysNull")]
+		public void IsNotDefaultStruct()
+		{
+			int integer = default;
+
+			Action act = () => Validation.Setup()
+				.IsNotDefault(integer, nameof(integer))
+				.Validate();
+
+			act.Should().Throw<ArgumentException>()
+				.WithMessage($"'{nameof(integer)}' value type cannot be default.*");
+		}
+
 		[Fact]
 		public void IsNotNullThrows()
 		{

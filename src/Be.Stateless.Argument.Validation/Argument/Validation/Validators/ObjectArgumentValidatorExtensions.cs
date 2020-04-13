@@ -22,6 +22,24 @@ namespace Be.Stateless.Argument.Validation
 {
 	public static class ObjectArgumentValidatorExtensions
 	{
+		public static TV IsDefault<TV, TA>(this TV validator, TA parameter, string parameterName) where TV : IArgumentValidator
+		{
+			return Equals(parameter, default(TA))
+				? validator
+				: typeof(TA).IsClass
+					? validator.AddException(new ArgumentException($"'{parameterName}' reference type must be null.", parameterName))
+					: validator.AddException(new ArgumentException($"'{parameterName}' value type must be default.", parameterName));
+		}
+
+		public static TV IsNotDefault<TV, TA>(this TV validator, TA parameter, string parameterName) where TV : IArgumentValidator
+		{
+			return !Equals(parameter, default(TA))
+				? validator
+				: typeof(TA).IsClass
+					? validator.AddException(new ArgumentNullException(parameterName, $"'{parameterName}' reference type cannot be null."))
+					: validator.AddException(new ArgumentException($"'{parameterName}' value type cannot be default.", parameterName));
+		}
+
 		public static TV IsNotNull<TV, TA>(this TV validator, TA parameter, string parameterName)
 			where TV : IArgumentValidator
 			where TA : class
