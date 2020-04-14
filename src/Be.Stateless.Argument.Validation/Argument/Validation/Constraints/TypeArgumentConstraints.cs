@@ -17,13 +17,13 @@
 #endregion
 
 using System;
-using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.Contracts;
 
 namespace Be.Stateless.Argument.Validation
 {
 	public static class TypeArgumentConstraints
 	{
-		[SuppressMessage("ReSharper", "UnusedParameter.Global")]
+		[Pure]
 		public static TV IsNullable<TV, TA>(this TV validator, TA parameter, string parameterName) where TV : IArgumentConstraint
 		{
 			var type = typeof(TA);
@@ -32,6 +32,7 @@ namespace Be.Stateless.Argument.Validation
 				: validator.AddException(new ArgumentException($"'{parameterName}' must be a nullable type, but is of type '{typeof(TA)}', which is not.", parameterName));
 		}
 
+		[Pure]
 		public static IArgumentConstraint IsOfType<TA>(this IArgumentConstraint constraint, object parameter, string parameterName)
 		{
 			return parameter is TA
@@ -39,6 +40,7 @@ namespace Be.Stateless.Argument.Validation
 				: constraint.AddException(new ArgumentException($"'{parameterName}' must be of the type '{typeof(TA)}', but was of type '{parameter.GetType()}'.", parameterName));
 		}
 
+		[Pure]
 		public static INestedArgumentConstraint IsOfType<TA>(this INestedArgumentConstraint constraint, object parameter, string parameterName)
 		{
 			return parameter is TA
@@ -46,6 +48,7 @@ namespace Be.Stateless.Argument.Validation
 				: constraint.AddException(new ArgumentException($"'{parameterName}' must be of the type '{typeof(TA)}', but was of type '{parameter.GetType()}'.", parameterName));
 		}
 
+		[Pure]
 		public static TV IsOfType<TV>(this TV validator, object parameter, Type type, string parameterName) where TV : IArgumentConstraint
 		{
 			return type.IsInstanceOfType(parameter)

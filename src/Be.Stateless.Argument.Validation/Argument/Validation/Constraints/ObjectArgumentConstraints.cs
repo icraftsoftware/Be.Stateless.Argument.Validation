@@ -17,11 +17,13 @@
 #endregion
 
 using System;
+using System.Diagnostics.Contracts;
 
 namespace Be.Stateless.Argument.Validation
 {
 	public static class ObjectArgumentConstraints
 	{
+		[Pure]
 		public static TV IsDefault<TV, TA>(this TV validator, TA parameter, string parameterName) where TV : IArgumentConstraint
 		{
 			return Equals(parameter, default(TA))
@@ -31,6 +33,7 @@ namespace Be.Stateless.Argument.Validation
 					: validator.AddException(new ArgumentException($"'{parameterName}' value type must be default.", parameterName));
 		}
 
+		[Pure]
 		public static TV IsNotDefault<TV, TA>(this TV validator, TA parameter, string parameterName) where TV : IArgumentConstraint
 		{
 			return !Equals(parameter, default(TA))
@@ -40,6 +43,7 @@ namespace Be.Stateless.Argument.Validation
 					: validator.AddException(new ArgumentException($"'{parameterName}' value type cannot be default.", parameterName));
 		}
 
+		[Pure]
 		public static TV IsNotNull<TV, TA>(this TV validator, TA parameter, string parameterName)
 			where TV : IArgumentConstraint
 			where TA : class
@@ -49,6 +53,7 @@ namespace Be.Stateless.Argument.Validation
 				: validator;
 		}
 
+		[Pure]
 		public static TV IsNull<TV, TA>(this TV validator, TA parameter, string parameterName)
 			where TV : IArgumentConstraint
 			where TA : class

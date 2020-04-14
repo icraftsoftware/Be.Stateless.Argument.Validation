@@ -16,6 +16,8 @@
 
 #endregion
 
+using System.Diagnostics.Contracts;
+
 namespace Be.Stateless.Argument.Validation
 {
 	/// <summary>
@@ -30,6 +32,7 @@ namespace Be.Stateless.Argument.Validation
 
 		public static class Validation
 		{
+			[Pure]
 			public static IArgumentConstraint Constraints => null;
 		}
 

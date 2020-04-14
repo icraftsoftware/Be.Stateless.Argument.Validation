@@ -17,11 +17,13 @@
 #endregion
 
 using System;
+using System.Diagnostics.Contracts;
 
 namespace Be.Stateless.Argument.Validation
 {
 	public static class DateTimeArgumentConstraints
 	{
+		[Pure]
 		public static T IsLocalTime<T>(this T validator, DateTime value, string parameterName) where T : IArgumentConstraint
 		{
 			return value.Kind == DateTimeKind.Local
@@ -29,6 +31,7 @@ namespace Be.Stateless.Argument.Validation
 				: validator.AddException(new ArgumentException($"'{parameterName}' must be a local time, but was of kind {value.Kind}.", parameterName));
 		}
 
+		[Pure]
 		public static T IsUniversalTime<T>(this T validator, DateTime value, string parameterName) where T : IArgumentConstraint
 		{
 			return value.Kind == DateTimeKind.Utc

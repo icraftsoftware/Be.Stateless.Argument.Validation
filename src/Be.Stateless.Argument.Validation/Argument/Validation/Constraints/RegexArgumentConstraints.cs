@@ -17,12 +17,14 @@
 #endregion
 
 using System;
+using System.Diagnostics.Contracts;
 using System.Text.RegularExpressions;
 
 namespace Be.Stateless.Argument.Validation
 {
 	public static class RegexArgumentConstraints
 	{
+		[Pure]
 		public static T Matches<T>(this T validator, string parameter, Regex regularExpression, string parameterName) where T : IArgumentConstraint
 		{
 			if (regularExpression == null) throw new ArgumentNullException(nameof(regularExpression));
@@ -31,6 +33,7 @@ namespace Be.Stateless.Argument.Validation
 				: validator.AddException(new ArgumentException($"'{parameterName}' must match '{regularExpression}', but was '{parameter}'.", parameterName));
 		}
 
+		[Pure]
 		public static T Matches<T>(this T validator, string parameter, string pattern, string parameterName) where T : IArgumentConstraint
 		{
 			return Regex.IsMatch(parameter, pattern)

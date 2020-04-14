@@ -17,11 +17,13 @@
 #endregion
 
 using System;
+using System.Diagnostics.Contracts;
 
 namespace Be.Stateless.Argument.Validation
 {
 	public static class StringArgumentConstraints
 	{
+		[Pure]
 		public static T IsNotNullOrEmpty<T>(this T validator, string parameter, string parameterName) where T : IArgumentConstraint
 		{
 			return string.IsNullOrEmpty(parameter)
@@ -29,6 +31,7 @@ namespace Be.Stateless.Argument.Validation
 				: validator;
 		}
 
+		[Pure]
 		public static T IsNotNullOrWhiteSpace<T>(this T validator, string parameter, string parameterName) where T : IArgumentConstraint
 		{
 			return string.IsNullOrWhiteSpace(parameter)

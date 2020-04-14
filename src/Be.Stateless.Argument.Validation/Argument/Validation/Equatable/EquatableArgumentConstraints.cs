@@ -17,6 +17,7 @@
 #endregion
 
 using System;
+using System.Diagnostics.Contracts;
 
 namespace Be.Stateless.Argument.Validation.Equatable
 {
@@ -30,6 +31,7 @@ namespace Be.Stateless.Argument.Validation.Equatable
 	/// </remarks>
 	public static class EquatableArgumentConstraints
 	{
+		[Pure]
 		public static TV IsEqualTo<TV, TA>(this TV validator, TA comparand, TA comparator, string parameterName)
 			where TV : IArgumentConstraint
 			where TA : IEquatable<TA>
@@ -39,6 +41,7 @@ namespace Be.Stateless.Argument.Validation.Equatable
 				: validator.AddException(new ArgumentException($"'{parameterName}' must be equal to {comparator}, but was {comparand}.", parameterName));
 		}
 
+		[Pure]
 		public static TV IsNotEqualTo<TV, TA>(this TV validator, TA comparand, TA comparator, string parameterName)
 			where TV : IArgumentConstraint
 			where TA : IEquatable<TA>

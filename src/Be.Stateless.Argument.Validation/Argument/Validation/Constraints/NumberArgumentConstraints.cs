@@ -17,11 +17,13 @@
 #endregion
 
 using System;
+using System.Diagnostics.Contracts;
 
 namespace Be.Stateless.Argument.Validation
 {
 	public static class NumberArgumentConstraints
 	{
+		[Pure]
 		public static T IsNegative<T>(this T validator, double parameter, string parameterName) where T : IArgumentConstraint
 		{
 			return parameter > 0d
@@ -29,6 +31,7 @@ namespace Be.Stateless.Argument.Validation
 				: validator;
 		}
 
+		[Pure]
 		public static T IsNegative<T>(this T validator, float parameter, string parameterName) where T : IArgumentConstraint
 		{
 			return parameter > 0f
@@ -36,6 +39,7 @@ namespace Be.Stateless.Argument.Validation
 				: validator;
 		}
 
+		[Pure]
 		public static T IsNegative<T>(this T validator, int parameter, string parameterName) where T : IArgumentConstraint
 		{
 			return parameter > 0
@@ -43,6 +47,7 @@ namespace Be.Stateless.Argument.Validation
 				: validator;
 		}
 
+		[Pure]
 		public static T IsNegative<T>(this T validator, long parameter, string parameterName) where T : IArgumentConstraint
 		{
 			return parameter > 0L
@@ -50,6 +55,7 @@ namespace Be.Stateless.Argument.Validation
 				: validator;
 		}
 
+		[Pure]
 		public static T IsNegative<T>(this T validator, short parameter, string parameterName) where T : IArgumentConstraint
 		{
 			return parameter > 0
@@ -57,6 +63,7 @@ namespace Be.Stateless.Argument.Validation
 				: validator;
 		}
 
+		[Pure]
 		public static T IsPositive<T>(this T validator, double parameter, string parameterName) where T : IArgumentConstraint
 		{
 			return parameter < 0d
@@ -64,6 +71,7 @@ namespace Be.Stateless.Argument.Validation
 				: validator;
 		}
 
+		[Pure]
 		public static T IsPositive<T>(this T validator, float parameter, string parameterName) where T : IArgumentConstraint
 		{
 			return parameter < 0f
@@ -71,6 +79,7 @@ namespace Be.Stateless.Argument.Validation
 				: validator;
 		}
 
+		[Pure]
 		public static T IsPositive<T>(this T validator, int parameter, string parameterName) where T : IArgumentConstraint
 		{
 			return parameter < 0
@@ -78,6 +87,7 @@ namespace Be.Stateless.Argument.Validation
 				: validator;
 		}
 
+		[Pure]
 		public static T IsPositive<T>(this T validator, long parameter, string parameterName) where T : IArgumentConstraint
 		{
 			return parameter < 0L
@@ -85,6 +95,7 @@ namespace Be.Stateless.Argument.Validation
 				: validator;
 		}
 
+		[Pure]
 		public static T IsPositive<T>(this T validator, short parameter, string parameterName) where T : IArgumentConstraint
 		{
 			return parameter < 0
