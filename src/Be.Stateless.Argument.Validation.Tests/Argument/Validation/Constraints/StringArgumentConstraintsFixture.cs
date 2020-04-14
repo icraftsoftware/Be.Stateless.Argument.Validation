@@ -27,7 +27,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNotNullOrEmptyThrows()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsNotNullOrEmpty(string.Empty, "value")
 				.Check();
 
@@ -38,7 +38,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNotNullOrEmptyThrowsNothing()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsNotNullOrEmpty("non empty string", "value")
 				.Check();
 
@@ -48,7 +48,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNotNullOrWhiteSpaceThrows()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsNotNullOrWhiteSpace("   ", "value")
 				.Check();
 
@@ -59,7 +59,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNotNullOrWhiteSpaceThrowsNothing()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsNotNullOrWhiteSpace("non empty string", "value")
 				.Check();
 

@@ -21,9 +21,18 @@ namespace Be.Stateless.Argument.Validation
 	/// <summary>
 	/// Entry point to the definition of fluent C# argument validation constraints.
 	/// </summary>
+	/// <remarks>
+	/// No objects are ever allocated unless one or more validation constraints could not be satisfied.
+	/// </remarks>
 	public static class Arguments
 	{
-		// if no problems are found with your arguments, then no extra objects are allocated.
-		public static IArgumentConstraint Constraints => null;
+		#region Nested Type: Validation
+
+		public static class Validation
+		{
+			public static IArgumentConstraint Constraints => null;
+		}
+
+		#endregion
 	}
 }

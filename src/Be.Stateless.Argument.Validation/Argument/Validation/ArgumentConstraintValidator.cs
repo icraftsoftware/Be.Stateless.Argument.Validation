@@ -22,9 +22,9 @@ using System.Linq;
 
 namespace Be.Stateless.Argument.Validation
 {
-	internal class ArgumentConstraint : IArgumentConstraint
+	internal class ArgumentConstraintValidator : IArgumentConstraint
 	{
-		protected internal ArgumentConstraint()
+		protected internal ArgumentConstraintValidator()
 		{
 			// optimization for most cases, which will have only one exception
 			ExceptionList = new List<Exception>(1);

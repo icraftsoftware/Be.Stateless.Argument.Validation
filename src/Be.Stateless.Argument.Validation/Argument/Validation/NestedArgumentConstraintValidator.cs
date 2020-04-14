@@ -20,7 +20,7 @@ using System;
 
 namespace Be.Stateless.Argument.Validation
 {
-	internal sealed class NestedNestedArgumentConstraint : ArgumentConstraint, INestedArgumentConstraint
+	internal sealed class NestedArgumentConstraintValidator : ArgumentConstraintValidator, INestedArgumentConstraint
 	{
 		internal new void AddException(Exception exception)
 		{

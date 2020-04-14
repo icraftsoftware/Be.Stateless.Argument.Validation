@@ -27,7 +27,7 @@ namespace Be.Stateless.Argument.Validation.Equatable
 		[Fact]
 		public void IsEqualToThrows()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsEqualTo(1, 2, "value")
 				.Check();
 
@@ -38,7 +38,7 @@ namespace Be.Stateless.Argument.Validation.Equatable
 		[Fact]
 		public void IsEqualToThrowsForNestedProperties()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsEqualTo(1, 1, "value")
 				.Check()
 				.IsEqualTo(1, 2, "object.Property")
@@ -51,7 +51,7 @@ namespace Be.Stateless.Argument.Validation.Equatable
 		[Fact]
 		public void IsEqualToThrowsNothing()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsEqualTo(7, 7, "value")
 				.Check();
 
@@ -61,7 +61,7 @@ namespace Be.Stateless.Argument.Validation.Equatable
 		[Fact]
 		public void IsNotEqualToThrows()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsNotEqualTo(1, 1, "value")
 				.Check();
 
@@ -72,7 +72,7 @@ namespace Be.Stateless.Argument.Validation.Equatable
 		[Fact]
 		public void IsNotEqualToThrowsForNestedProperties()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsNotEqualTo(1, 2, "value")
 				.Check()
 				.IsNotEqualTo(1, 1, "object.Property")
@@ -85,7 +85,7 @@ namespace Be.Stateless.Argument.Validation.Equatable
 		[Fact]
 		public void IsNotEqualToThrowsNothing()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsNotEqualTo(1, 2, "value")
 				.Check();
 

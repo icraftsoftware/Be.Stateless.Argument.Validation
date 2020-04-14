@@ -27,7 +27,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNegativeDoubleThrows()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsNegative(1d, "value")
 				.Check();
 
@@ -38,7 +38,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNegativeDoubleThrowsNothing()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsNegative(-1d, "value")
 				.Check();
 
@@ -48,7 +48,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNegativeFloatThrows()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsNegative(1f, "value")
 				.Check();
 
@@ -59,7 +59,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNegativeFloatThrowsNothing()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsNegative(-1f, "value")
 				.Check();
 
@@ -69,7 +69,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNegativeIntThrows()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsNegative(1, "value")
 				.Check();
 
@@ -80,7 +80,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNegativeIntThrowsNothing()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsNegative(-1, "value")
 				.Check();
 
@@ -90,7 +90,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNegativeLongThrows()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsNegative(1L, "value")
 				.Check();
 
@@ -101,7 +101,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNegativeLongThrowsNothing()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsNegative(-1L, "value")
 				.Check();
 
@@ -111,7 +111,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNegativeShortThrows()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsNegative((short) 1, "value")
 				.Check();
 
@@ -122,7 +122,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNegativeShortThrowsNothing()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsNegative((short) -1, "value")
 				.Check();
 
@@ -132,7 +132,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsPositiveDoubleThrows()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsPositive(-1d, "value")
 				.Check();
 
@@ -143,7 +143,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsPositiveDoubleThrowsNothing()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsPositive(1d, "value")
 				.Check();
 
@@ -153,7 +153,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsPositiveFloatThrows()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsPositive(-1f, "value")
 				.Check();
 
@@ -164,7 +164,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsPositiveFloatThrowsNothing()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsPositive(1f, "value")
 				.Check();
 
@@ -174,7 +174,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsPositiveIntThrows()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsPositive(-1, "value")
 				.Check();
 
@@ -185,7 +185,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsPositiveIntThrowsNothing()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsPositive(1, "value")
 				.Check();
 
@@ -195,7 +195,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsPositiveLongThrows()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsPositive(-1L, "value")
 				.Check();
 
@@ -206,7 +206,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsPositiveLongThrowsNothing()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsPositive(1L, "value")
 				.Check();
 
@@ -216,7 +216,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsPositiveShortThrows()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsPositive((short) -1, "value")
 				.Check();
 
@@ -227,7 +227,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsPositiveShortThrowsNothing()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsPositive((short) 1, "value")
 				.Check();
 

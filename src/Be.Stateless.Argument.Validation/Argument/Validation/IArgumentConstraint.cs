@@ -31,10 +31,11 @@ namespace Be.Stateless.Argument.Validation
 	/// </para>
 	/// <para>
 	/// Compound arguments, i.e. nested object properties, however should only be validated via a subsequent call to the <see
-	/// cref="ArgumentConstraintValidationExtensions.Check"/> method; that is to say, once it has been established that the objects whose
-	/// nested properties are to be checked have themselves been validated. These validation constraints can be written as a
-	/// separate set of constraint, see <see cref="Arguments.Constraints">Arguments.Constraints</see>, or they can be chained
-	/// directly after the first call to the <see cref="ArgumentConstraintValidationExtensions.Check"/> method.
+	/// cref="ArgumentConstraintValidationExtensions.Check"/> method; that is to say, once it has been established that the
+	/// objects whose nested properties are to be checked have themselves been validated. These validation constraints can be
+   /// written as a separate set of constraint, see <see cref="Arguments.Validation.Constraints">Arguments.Constraints</see>, or
+	/// they can be chained directly after the first call to the <see cref="ArgumentConstraintValidationExtensions.Check"/>
+	/// method.
 	/// </para>
 	/// </remarks>
 	public interface IArgumentConstraint

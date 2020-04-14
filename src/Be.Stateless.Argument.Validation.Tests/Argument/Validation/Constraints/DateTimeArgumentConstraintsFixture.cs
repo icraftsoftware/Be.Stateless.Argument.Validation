@@ -27,7 +27,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsLocalTimeThrows()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsLocalTime(DateTime.UtcNow, "value")
 				.Check();
 
@@ -38,7 +38,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsLocalTimeThrowsNothing()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsLocalTime(DateTime.Now, "value")
 				.Check();
 
@@ -48,7 +48,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsUniversalTimeThrows()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsUniversalTime(DateTime.Now, "value")
 				.Check();
 
@@ -59,7 +59,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsUniversalTimeThrowsNothing()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsUniversalTime(DateTime.UtcNow, "value")
 				.Check();
 

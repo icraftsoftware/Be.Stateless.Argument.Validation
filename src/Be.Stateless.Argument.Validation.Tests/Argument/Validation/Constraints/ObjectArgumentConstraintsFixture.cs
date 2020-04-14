@@ -31,7 +31,7 @@ namespace Be.Stateless.Argument.Validation
 		{
 			Tuple<int, int> tuple = new Tuple<int, int>(1, 2);
 
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsDefault(tuple, nameof(tuple))
 				.Check();
 
@@ -45,7 +45,7 @@ namespace Be.Stateless.Argument.Validation
 		{
 			int integer = 12;
 
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsDefault(integer, nameof(integer))
 				.Check();
 
@@ -59,7 +59,7 @@ namespace Be.Stateless.Argument.Validation
 		{
 			Tuple<int, int> tuple = default;
 
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsNotDefault(tuple, nameof(tuple))
 				.Check();
 
@@ -73,7 +73,7 @@ namespace Be.Stateless.Argument.Validation
 		{
 			int integer = default;
 
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsNotDefault(integer, nameof(integer))
 				.Check();
 
@@ -84,7 +84,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNotNullThrows()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsNotNull((string) null, "value")
 				.Check();
 
@@ -95,7 +95,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNotNullThrowsForNestedProperties()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsNotNull(this, "value")
 				.Check()
 				.IsNotNull((string) null, "object.Property")
@@ -108,7 +108,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNotNullThrowsNothing()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsNotNull(this, "value")
 				.Check();
 
@@ -118,7 +118,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNullThrows()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsNull(this, "value")
 				.Check();
 
@@ -129,7 +129,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNullThrowsForNestedProperties()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsNull((string) null, "value")
 				.Check()
 				.IsNull(this, "object.Property")
@@ -142,7 +142,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNullThrowsNothing()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsNull((string) null, "value")
 				.Check();
 

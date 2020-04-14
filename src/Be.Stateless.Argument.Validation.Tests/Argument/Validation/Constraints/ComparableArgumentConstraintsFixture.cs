@@ -27,7 +27,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsEqualToThrows()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsEqualTo(1, 2, "value")
 				.Check();
 
@@ -38,7 +38,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsEqualToThrowsForNestedProperties()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsEqualTo(7, 7, "value")
 				.Check()
 				.IsEqualTo(1, 2, "object.Property")
@@ -51,7 +51,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsEqualToThrowsNothing()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsEqualTo(7, 7, "value")
 				.Check();
 
@@ -61,7 +61,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsGreaterOrEqualThanThrows()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsGreaterOrEqualThan(1, 2, "value")
 				.Check();
 
@@ -72,7 +72,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsGreaterOrEqualThanThrowsForNestedProperties()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsGreaterOrEqualThan(7, 7, "value")
 				.Check()
 				.IsGreaterOrEqualThan(1, 2, "object.Property")
@@ -85,7 +85,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsGreaterOrEqualThanThrowsNothing()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsGreaterOrEqualThan(7, 7, "value")
 				.Check();
 
@@ -95,7 +95,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsGreaterThanThrows()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsGreaterThan(1, 2, "value")
 				.Check();
 
@@ -106,7 +106,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsGreaterThanThrowsForNestedProperties()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsGreaterThan(7, 6, "value")
 				.Check()
 				.IsGreaterThan(1, 2, "object.Property")
@@ -119,7 +119,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsGreaterThanThrowsNothing()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsGreaterThan(7, 6, "value")
 				.Check();
 
@@ -129,7 +129,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsLessOrEqualThanThrows()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsLessOrEqualThan(2, 1, "value")
 				.Check();
 
@@ -140,7 +140,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsLessOrEqualThanThrowsForNestedProperties()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsLessOrEqualThan(6, 7, "value")
 				.Check()
 				.IsLessOrEqualThan(2, 1, "object.Property")
@@ -153,7 +153,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsLessOrEqualThanThrowsNothing()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsLessOrEqualThan(6, 7, "value")
 				.Check();
 
@@ -163,7 +163,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsLessThanThrows()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsLessThan(2, 1, "value")
 				.Check();
 
@@ -174,7 +174,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsLessThanThrowsForNestedProperties()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsLessThan(6, 7, "value")
 				.Check()
 				.IsLessThan(2, 1, "object.Property")
@@ -187,7 +187,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsLessThanThrowsNothing()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsLessThan(6, 7, "value")
 				.Check();
 
@@ -197,7 +197,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNotEqualToThrows()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsNotEqualTo(1, 1, "value")
 				.Check();
 
@@ -208,7 +208,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNotEqualToThrowsForNestedProperties()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsNotEqualTo(1, 2, "value")
 				.Check()
 				.IsNotEqualTo(1, 1, "object.Property")
@@ -221,7 +221,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNotEqualToThrowsNothing()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsNotEqualTo(1, 2, "value")
 				.Check();
 

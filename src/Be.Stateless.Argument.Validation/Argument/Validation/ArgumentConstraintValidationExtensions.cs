@@ -27,13 +27,13 @@ namespace Be.Stateless.Argument.Validation
 		{
 			if (typeof(T) == typeof(INestedArgumentConstraint))
 			{
-				var argumentValidator = validator as NestedNestedArgumentConstraint ?? new NestedNestedArgumentConstraint();
+				var argumentValidator = validator as NestedArgumentConstraintValidator ?? new NestedArgumentConstraintValidator();
 				argumentValidator.AddException(exception);
 				return (T) (INestedArgumentConstraint) argumentValidator;
 			}
 			else
 			{
-				var argumentValidator = validator as ArgumentConstraint ?? new ArgumentConstraint();
+				var argumentValidator = validator as ArgumentConstraintValidator ?? new ArgumentConstraintValidator();
 				argumentValidator.AddException(exception);
 				return (T) (IArgumentConstraint) argumentValidator;
 			}

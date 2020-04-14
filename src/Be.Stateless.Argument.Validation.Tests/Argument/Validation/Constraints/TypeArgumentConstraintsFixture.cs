@@ -28,7 +28,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNullableThrows()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsNullable(0, "value")
 				.Check();
 
@@ -39,7 +39,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNullableThrowsForNestedProperties()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsNullable((int?) 0, "value")
 				.Check()
 				.IsNullable(0, "object.Property")
@@ -52,7 +52,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsNullableThrowsNothing()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsNullable((int?) 0, "value")
 				.Check();
 
@@ -62,7 +62,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsOfTypeGenericThrows()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsOfType<IEnumerable<int>>("string parameter", "value")
 				.Check();
 
@@ -73,7 +73,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsOfTypeGenericThrowsForNestedProperties()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsOfType<IEnumerable<int>>(new List<int>(), "value")
 				.Check()
 				.IsOfType<IEnumerable<int>>("string parameter", "object.Property")
@@ -86,7 +86,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsOfTypeGenericThrowsNothing()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsOfType<IEnumerable<int>>(new List<int>(), "value")
 				.Check();
 
@@ -96,7 +96,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsOfTypeThrows()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsOfType("string parameter", typeof(IEnumerable<int>), "value")
 				.Check();
 
@@ -107,7 +107,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsOfTypeThrowsForNestedProperties()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsOfType(new List<int>(), typeof(IEnumerable<int>), "value")
 				.Check()
 				.IsOfType("string parameter", typeof(IEnumerable<int>), "object.Property")
@@ -120,7 +120,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void IsOfTypeThrowsNothing()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsOfType(new List<int>(), typeof(IEnumerable<int>), "value")
 				.Check();
 

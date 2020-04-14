@@ -29,10 +29,10 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		[SuppressMessage("ReSharper", "AccessToModifiedClosure")]
 		[SuppressMessage("ReSharper", "PossibleNullReferenceException")]
-		public void CheckArgumentsAndTheirState()
+		public void CheckNestedArguments()
 		{
 			Tuple<int, int, int> tuple = null;
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsNotNull(tuple, nameof(tuple))
 				.Check()
 				.IsPositive(tuple.Item1, $"{nameof(tuple)}.{nameof(tuple.Item1)}")
@@ -52,7 +52,7 @@ namespace Be.Stateless.Argument.Validation
 		[Fact]
 		public void CheckThrowsAggregateException()
 		{
-			Action act = () => Arguments.Constraints
+			Action act = () => Arguments.Validation.Constraints
 				.IsEqualTo(1, 2, "arg1")
 				.IsEqualTo(1, 3, "arg2")
 				.Check();
