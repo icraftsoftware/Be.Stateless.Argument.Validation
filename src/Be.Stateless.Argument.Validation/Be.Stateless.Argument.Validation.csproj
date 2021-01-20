@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netcoreapp3.0;net48</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;netcoreapp3.1;net48</TargetFrameworks>
     <RootNamespace>Be.Stateless</RootNamespace>
-    <AssemblyTitle>Be.Stateless.Argument.Validation</AssemblyTitle>
-    <Description>Extension methods for general purpose .NET development.</Description>
+    <AssemblyName>Be.Stateless.Argument.Validation</AssemblyName>
+    <Description>Fluent C# argument validation for general purpose .NET development.</Description>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -15,7 +15,7 @@
 
   <PropertyGroup>
     <GeneratePackageOnBuild Condition=" '$(GeneratePackageOnBuild)' == '' ">false</GeneratePackageOnBuild>
-    <PackageId>$(AssemblyTitle)</PackageId>
+    <PackageId>$(AssemblyName)</PackageId>
     <PackageDescription>$(Description)</PackageDescription>
     <!--<PackageIconUrl>icon url prop</PackageIconUrl>-->
     <PackageProjectUrl>$(RepositoryUrl)</PackageProjectUrl>
@@ -26,7 +26,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <DocumentationFile>bin\Release\$(AssemblyTitle).xml</DocumentationFile>
+    <DocumentationFile>bin\Release\$(AssemblyName).xml</DocumentationFile>
     <NoWarn>1701;1702</NoWarn>
   </PropertyGroup>
 

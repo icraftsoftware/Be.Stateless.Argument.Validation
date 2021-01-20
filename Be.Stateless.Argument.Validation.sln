@@ -7,21 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Be.Stateless.Argument.Valid
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Be.Stateless.Argument.Validation.Tests", "src\Be.Stateless.Argument.Validation.Tests\Be.Stateless.Argument.Validation.Tests.csproj", "{2BC620DB-BAC3-4DDB-8F60-53AD88083D26}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{18104AB2-6A84-4B08-9955-92E56AB2E39E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FB2DB540-81B8-4FA6-A37F-2DD74DE501FC}"
 	ProjectSection(SolutionItems) = preProject
-		build\be.stateless.public.snk = build\be.stateless.public.snk
-		build\build.ps1 = build\build.ps1
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common.msbuild", "Common.msbuild", "{722427F1-B21C-49D4-9984-DF8F804BA869}"
-	ProjectSection(SolutionItems) = preProject
-		src\Directory.Build.props = src\Directory.Build.props
-		src\Directory.Build.targets = src\Directory.Build.targets
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{090B4A16-A894-4863-ACEA-C08FA092B269}"
-	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
+		.settings\.editorconfig = .settings\.editorconfig
 	EndProjectSection
 EndProject
 Global
